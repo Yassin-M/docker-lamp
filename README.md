@@ -2,16 +2,16 @@
 > Proiektu honetan datu base bat eta horri konektatuko den web aplikazio bat sortu dugu.
 
 ## Aurkibidea
-* [Partaideak](#participants)
-* [Informazio orokorra](#general-information)
-* [Erabilitako teknologia](#technologies-used)
-* [Ezaugarriak](#features)
-* [Pantaila-argazkiak](#screenshots)
-* [Konfigurazioa](#setup)
-* [Erabilera](#usage)
-* [Proiektuaren egoera](#project-status)
-* [Hobekuntza posibleak](#room-for-improvement)
-* [Esker onak](#acknowledgements)
+* [Partaideak](#partaideak)
+* [Informazio orokorra](#informazio-orokorra)
+* [Erabilitako teknologia](#erabilitako-teknologia)
+* [Ezaugarriak](#ezaugarriak)
+* [Pantaila-argazkiak](#pantaila-argazkiak)
+* [Konfigurazioa](#konfigurazioa)
+* [Erabilera](#erabilera)
+* [Proiektuaren egoera](#proiektuaren-egoera)
+* [Hobekuntza posibleak](#hobekuntza-posibleak)
+* [Esker onak](#esker-onak)
 
 ## Partaideak
 
