@@ -1,0 +1,137 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --accent: #2b7be4;
+  --muted: #6b7280;
+  --danger: #e03131;
+  --shadow: 0 6px 18px rgba(43,123,228,0.08);
+}
+
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,var(--bg),#eef2f7);
+  color: #111827;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header{
+  padding: 1.25rem;
+  text-align: center;
+  background: transparent;
+}
+
+.site-header h1{
+  font-size: 1.5rem;
+  letter-spacing: 0.2px;
+}
+
+.container{
+  width: min(1000px, 94%);
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.panel{
+  background: var(--card);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.panel h2{
+  font-size: 1.125rem;
+  color: #0f172a;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* BOTOIAK */
+.btn{
+  appearance: none;
+  border: 1px solid rgba(15,23,42,0.06);
+  background: white;
+  color: #0f172a;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .06s ease, box-shadow .06s ease, background-color .12s ease, color .12s ease, filter .12s ease;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(8,15,30,0.03);
+
+  /* esteketan ez azpimarratu */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:link,
+.btn:visited{
+  text-decoration: none;
+}
+
+.btn:focus,
+.btn:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(43,123,228,0.12), 0 8px 20px rgba(11,34,84,0.08);
+}
+
+.btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(11,34,84,0.08);
+  background-color: rgba(43,123,228,0.06);
+  color: var(--accent);
+}
+
+.btn:active{ transform: translateY(0); }
+
+.btn.primary{
+  background: linear-gradient(180deg,var(--accent),#1f63d9);
+  color: white;
+  border: none;
+  box-shadow: 0 8px 20px rgba(43,123,228,0.16);
+}
+
+.btn.primary:hover{
+  filter: brightness(0.93);
+}
+
+/* arrisku-botoiak */
+.btn.danger{
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid rgba(224,49,49,0.12);
+}
+
+.btn.danger:hover{
+  background: var(--danger);
+  color: white;
+  border-color: rgba(224,49,49,0.18);
+}
+
+/* Pantaila handietan botoiak lerro berean jarri*/
+@media (min-width: 480px){
+  .buttons{ flex-direction: row; }
+  .buttons .btn{ flex: 1; text-align: center; }
+}
+
+.site-footer{
+  text-align: center;
+  padding: 1rem;
+  color: var(--muted);
+  margin-top: auto;
+}

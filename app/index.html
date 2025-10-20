@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html>
-    <head> 
-        Gure ISSKS Web
-        <meta charset="UTF-8">
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title></title>
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <div class="Hautaketa"></div>
-        <h1> ZER EGIN </h1>
-        <p>
-            <label for="erregistratu"> Erregistratu </label>
-            <input type="radio" id="erregistratu" name="erregistratu" value="erregistratu">
-        </p>
-        <p>
-            <label for="saioa hasi"> Saioa hasi</label>
-            <input type="radio" id="saioa hasi" name="saioa hasi" value="saioa hasi">
-        </p>
-        <p>
-            <button type="submit">
-                <img src="enviar.png">
-            </button>
-        </p>
+        <header class="site-header">
+            <h1>Gure ISSKS Web Aplikazioa</h1>
+        </header>
 
+        <main class="container">
+            <section class="panel account" aria-labelledby="account-title">
+                <h2 id="account-title">Kontua</h2>
+                <div class="buttons">
+                    <a class="btn primary" id="btn-login" href="login/" role="button">Saioa hasi</a>
+                    <a class="btn" id="btn-register" href="register/" role="button">Erregistratu</a>
+                    <a class="btn" id="btn-edit-profile" href="show_user/" role="button">Erabiltzailea ikusi/aldatu</a>
+                </div>
+            </section>
+
+            <section class="panel database" aria-labelledby="db-title">
+                <h2 id="db-title">Datu-basea</h2>
+                <div class="buttons">
+                    <a class="btn" id="btn-view" href="items/" role="button">Datuak ikusi</a>
+                    <a class="btn" id="btn-edit" href="add_item/" role="button">Datuak gehitu</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <small>Zibergalaktikoak</small>
+        </footer>
     </body>
 </html>
