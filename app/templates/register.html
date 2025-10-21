@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        Erregistroa
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Erregistroa
+        </title>
+        <link rel="stylesheet" href="../css/styles.css" />
     </head>
     <body>
-        <div class="Formularioa">
+        <div class="Formularioa" align="center" id="register_form">
             <form action="../config/register.php" method="POST">
                 <h1> 
                     ERREGISTROA 
                 </h1>
                 <p>
                     <label for="Izena"> Izena </label>
-                    <input type="text" name="izena" placeholder="Zure izena sartu" required>
+                    <input type="text" name="izena" placeholder="Zure izena-abizenak sartu" required>
                 </p>
                 <!-- <p>
                     <label for="Abizenak"> Abizenak </label>
@@ -21,20 +26,20 @@
                     <label for="NAN"> NAN </label>
                     <input type="text" name="nan" placeholder="Zure NAN-a sartu" required>
                 </p>
-                <!-- <p>
+                <p>
                     <label for="Jaiotze data"> Jaiotze data </label>
-                    <input type="text" name="jaiotze data" placeholder="Zure jaoitze data sartu">
+                    <input type="date" name="jaiotze data" placeholder="Zure jaoitze data sartu">
                 </p>
                 <p>
                     <label for="Email"> Email </label>
-                    <input type="text" name="email" placeholder="Zure email-a sartu">
+                    <input type="email" name="email" placeholder="Zure email-a sartu">
                 </p>
-                <p> -->
-                    <button type="submit">
-                        <img src="../img/enviar.png">
+                <p>
+                    <button type="submit" id="register_submit">
+                        <img src="../img/enviar.png" width="50" height="50">  
                     </button>
                     <button type="reset">
-                        <img src="../img/borrar.png">
+                        <img src="../img/borrar.png" width="50" height="50">
                     </button>
                 </p>
             </form>
