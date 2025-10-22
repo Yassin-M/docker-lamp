@@ -100,13 +100,11 @@ body{
 .btn:active{ transform: translateY(0); }
 
 .btn.primary{
-  background: linear-gradient(180deg,var(--accent),#1f63d9);
-  color: white;
-  border: none;
   box-shadow: 0 8px 20px rgba(43,123,228,0.16);
 }
 
 .btn.primary:hover{
+  background: linear-gradient(180deg,var(--accent),#1f63d9);
   filter: brightness(0.93);
 }
 
@@ -134,4 +132,31 @@ body{
   padding: 1rem;
   color: var(--muted);
   margin-top: auto;
+}
+
+/* Datu-sarrerak */
+input {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(8, 15, 30, 0.03) inset;
+  font-size: 0.95rem;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(43, 123, 228, 0.12);
+}
+
+label {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  display: inline-block;
 }
