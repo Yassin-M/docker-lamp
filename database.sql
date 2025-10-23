@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 16-09-2020 a las 16:37:17
--- Versión del servidor: 10.5.5-MariaDB-1:10.5.5+maria~focal
--- Versión de PHP: 7.4.9
+-- Tiempo de generación: 23-10-2025 a las 08:20:15
+-- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
+-- Versión de PHP: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,31 +24,49 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Estructura de tabla para la tabla `Datuak`
 --
 
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` text NOT NULL
+CREATE TABLE `Datuak` (
+  `izena` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kostua` int(11) NOT NULL,
+  `bizitza` int(11) NOT NULL,
+  `erasoa` int(11) NOT NULL,
+  `mota` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `usuarios`
+-- Estructura de tabla para la tabla `Erabiltzailea`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`) VALUES
-(1, 'mikel'),
-(2, 'aitor');
+CREATE TABLE `Erabiltzailea` (
+  `Nan` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Izena` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Abizenak` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `JaiotzeData` date NOT NULL,
+  `tlf` int(11) NOT NULL,
+  `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pasahitza` char(60) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `usuarios`
+-- Indices de la tabla `Datuak`
 --
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `Datuak`
+  ADD PRIMARY KEY (`izena`);
+
+--
+-- Indices de la tabla `Erabiltzailea`
+--
+ALTER TABLE `Erabiltzailea`
+  ADD PRIMARY KEY (`Nan`),
+  ADD UNIQUE KEY `email` (`email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
