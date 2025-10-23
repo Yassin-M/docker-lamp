@@ -1,15 +1,35 @@
 <?php
-   include("../index.php");
-   $izena = $_POST['izena'];
-   $nan = $_POST['nan'];
+include("../index.php"); // Conexión a la base de datos
 
-   $sql = "INSERT INTO usuarios (id, nombre) VALUES ('$nan', '$izena')";
+// Recoger datos del formulario
+$izena = trim($_POST['izena']);
+$nan = trim($_POST['nan']);
+$zenbaki = trim($_POST['zenbakia']);
+$data = trim($_POST['data']);
+$email = trim($_POST['email']);
+$pasahitza = trim($_POST['pasahitza']);
 
-   if ($conn->query($sql) === TRUE) {
-      echo "Usuario registrado correctamente.";
-   } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-   }
-   // creo que aun no confirma que el usuario no exista
-   $conn->close();
+// Comprobar si el usuario ya existe
+$stmt = $conn->prepare("SELECT * FROM Erabiltzailea WHERE nan=? OR email=?");
+$stmt->bind_param("ss", $nan, $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    echo "El usuario ya existe.";
+    exit;
+}
+
+// Insertar usuario (password en texto plano, para pruebas; ideal: usar password_hash)
+$stmt = $conn->prepare("INSERT INTO Erabiltzailea (nan, izena, jaiotze_data, tlf, email, pasahitza) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssss", $nan, $izena, $data, $zenbaki, $email, $pasahitza);
+
+if ($stmt->execute()) {
+    echo "Usuario registrado correctamente.";
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
 ?>
