@@ -1,0 +1,3 @@
+function datuakEgiaztatu(email, pasahitza){
+   
+}

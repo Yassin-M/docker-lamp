@@ -8,16 +8,16 @@
     </head>
     <body class="centered-page">
         <div class="container">
-            <div class="panel Formularioa" id="login_form">
-                <form action="../config/login.php" method="POST">
+            <div class="panel Formularioa" id="login_div">
+                <form name="flogin" id="login_form" action="../config/login.php" method="POST">
                     <h1 style="text-align: center;">SAIOA HASI</h1>
                     <p>
-                        <label for="username">Erabiltzaile izena</label>
-                        <input type="text" name="username" placeholder="Zure erabiltzaile izena sartu" required>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Zure erabiltzaile emaila sartu" required>
                     </p>
                     <p>
-                        <label for="password">Pasahitza</label>
-                        <input type="password" name="password" placeholder="Zure pasahitza sartu" required>
+                        <label for="pasahitza">Pasahitza</label>
+                        <input type="password" name="pasahitza" id="pasahitza" placeholder="Zure pasahitza sartu" required>
                     </p>
                     <div class="buttons">
                         <a class="btn" type="button" id="atzera"  href="../" role="button" style="margin-top: 1rem;">
@@ -33,6 +33,13 @@
                 </form>
             </div>
         </div>
-        <script src="../js/login.js"></script>
+        <script>
+            let uEmail = document.flogin.email.value;
+            let uPasahitza = document.flogin.pasahitza.value;
+
+            if(uEmail.length=="" || uPasahitza.length==""){
+                alert("Zerbait ez duzu ipini.")
+            }
+        </script>
     </body>
 </html>

@@ -24,28 +24,28 @@ function validDni(dni){
 }
 
 function validEmail(email){
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function validText(text){
-  return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(text.trim());
+  return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(text);
 }
 
 function validZenbakia(zenbakia){
-  return /^\d{9}$/.test(zenbakia.trim());
+  return /^\d{9}$/.test(zenbakia);
 }
 
 // Asociar la función al submit del formulario
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("formularioa");
+  const form = document.getElementById("register_form");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const nombreCompleto = document.getElementById("izena").value.trim();
-    const dni = document.getElementById("nan").value.trim();
-    const telefono = document.getElementById("zenbakia").value.trim();
-    const email = document.getElementById("email").value.trim();
+    const nombreCompleto = document.getElementById("izena").value;
+    const dni = document.getElementById("nan").value;
+    const telefono = document.getElementById("zenbakia").value;
+    const email = document.getElementById("email").value;
 
     datuakegiaztatu(nombreCompleto, "", dni, telefono, email, form);
   });
