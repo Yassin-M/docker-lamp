@@ -35,6 +35,12 @@ CREATE TABLE `Datuak` (
   `mota` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `Datuak` (`izena`, `kostua`, `bizitza`, `erasoa`, `mota`) VALUES
+('Sable laser', 1500, 100, 90, 'Arma blanca'),
+('Blaster', 1200, 80, 110, 'Arma de fuego'),
+('Cañón de partículas', 3000, 150, 200, 'Arma pesada'),
+('Rifle de francotirador', 2500, 90, 180, 'Arma de fuego'),
+('Granada de plasma', 2000, 50, 250, 'Explosivo');
 -- --------------------------------------------------------
 
 --

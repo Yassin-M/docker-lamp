@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mostrar usuarios</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Gure ISSKS Web Aplikazioa</h1>
+    </header>
+
+    <main class="container">
+      <section class="panel" aria-labelledby="show-title">
+        <h2 id="show-title">Usuarios registrados</h2>
+
+        <p class="muted" style="color:var(--muted);">A continuación se muestran los usuarios almacenados en la base de datos. Sustituir el tbody por PHP para generar las filas dinámicamente.</p>
+
+        <div class="buttons buttons-right">
+          <a class="btn" href="../add_item/" role="button">Añadir usuario</a>
+          <a class="btn" href="../" role="button">Volver</a>
+        </div>
+
+        <div class="table-wrap mt-sm">
+          <table class="users" aria-describedby="show-title">
+            <thead>
+              <tr>
+                <th>Izena</th>
+                <th>Kostua</th>
+                <th>Bizitza</th>
+                <th>Erasoa</th>
+                <th>Mota</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody">
+              <!-- filas generadas dinámicamente por JS -->
+              <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:1rem;">Cargando datos...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="../show_item/fetch_rows.js"></script>
+
+    <footer class="site-footer">
+      <small>Zibergalaktikoak</small>
+    </footer>
+  </body>
+</html>
