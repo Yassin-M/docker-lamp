@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 23-10-2025 a las 08:20:15
+-- Tiempo de generación: 23-10-2025 a las 08:40:28
 -- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
 -- Versión de PHP: 8.2.27
 
@@ -42,13 +42,12 @@ CREATE TABLE `Datuak` (
 --
 
 CREATE TABLE `Erabiltzailea` (
-  `Nan` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Izena` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Abizenak` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `JaiotzeData` date NOT NULL,
+  `nan` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `izena` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jaiotze_data` date NOT NULL,
   `tlf` int(11) NOT NULL,
   `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pasahitza` char(60) COLLATE utf8mb4_unicode_ci NOT NULL
+  `pasahitza` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -65,7 +64,7 @@ ALTER TABLE `Datuak`
 -- Indices de la tabla `Erabiltzailea`
 --
 ALTER TABLE `Erabiltzailea`
-  ADD PRIMARY KEY (`Nan`),
+  ADD PRIMARY KEY (`nan`),
   ADD UNIQUE KEY `email` (`email`);
 COMMIT;
 
