@@ -25,6 +25,13 @@ body{
   background: transparent;
 }
 
+.centered-page{
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1.25rem;
+}
+
 .site-header h1{
   font-size: 1.5rem;
   letter-spacing: 0.2px;
