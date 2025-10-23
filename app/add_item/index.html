@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Karta gehitu</title>
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body class="centered-page">
+        <div class="container">
+            <div class="panel Formularioa" id="add_item_form">
+                <form action="../config/add_item.php" method="POST">
+                    <h1 style="text-align: center;">KARTA GEHITU</h1>
+                    <p>
+                        <label for="Izena">Izena</label>
+                        <input type="text" name="karta_izena" placeholder="Sartu kartaren izena" required>
+                    </p>
+                    <p>
+                        <label for="Kostua">Kostua</label>
+                        <input type="text" name="karta_kostua" placeholder="Sartu kartaren kostua" required>
+                    </p>
+                    <p>
+                        <label for="Bizitza">Bizitza</label>
+                        <input type="text" name="karta_bizitza" placeholder="Sartu kartaren bizitza" required>
+                    </p>
+                    <p>
+                        <label for="Erasoa">Erasoa</label>
+                        <input type="text" name="karta_erasoa" placeholder="Sartu kartaren erasoa" required>
+                    </p>
+                    <p>
+                        <label for="Mota">Mota</label>
+                        <input type="text" name="karta_mota" placeholder="Sartu kartaren mota" required>
+                    </p>
+                    <div class="buttons">
+                        <a class="btn" type="button" id="atzera"  href="../" role="button" style="margin-top: 1rem;">
+                            <img src="../img/atzera.png" width="50" height="50">
+                        </a>
+                        <button class="btn primary" type="submit" id="add_item_submit" style="margin-top: 1rem;">
+                            <img src="../img/bidali.png" width="50" height="50">
+                        </button>
+                        <button class="btn danger" type="reset" id="add_item_reset" style="margin-top: 1rem;">
+                            <img src="../img/ezabatu.png" width="50" height="50">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="../js/add_item.js"></script>
+</html>
