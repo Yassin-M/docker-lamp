@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Saioa hasi</title>
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body class="centered-page">
+        <div class="container">
+            <div class="panel Formularioa" id="login_form">
+                <form action="../config/login.php" method="POST">
+                    <h1 style="text-align: center;">SAIOA HASI</h1>
+                    <p>
+                        <label for="username">Erabiltzaile izena</label>
+                        <input type="text" name="username" placeholder="Zure erabiltzaile izena sartu" required>
+                    </p>
+                    <p>
+                        <label for="password">Pasahitza</label>
+                        <input type="password" name="password" placeholder="Zure pasahitza sartu" required>
+                    </p>
+                    <div class="buttons">
+                        <a class="btn" type="button" id="atzera"  href="../" role="button" style="margin-top: 1rem;">
+                            <img src="../img/atzera.png" width="50" height="50">
+                        </a>
+                        <button class="btn primary" type="submit" id="login_submit" style="margin-top: 1rem;">
+                            <img src="../img/bidali.png" width="50" height="50">
+                        </button>
+                        <button class="btn danger" type="reset" id="login_reset" style="margin-top: 1rem;">
+                            <img src="../img/ezabatu.png" width="50" height="50">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="../js/login.js"></script>
+    </body>
+</html>
