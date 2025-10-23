@@ -1,0 +1,8 @@
+body {
+    .profile { max-width: 640px; margin: 2rem auto; padding: 1.25rem; }
+	.profile h2 { margin-top: 0; }
+	.profile .field { display:flex; gap:1rem; padding: .5rem 0; }
+	.profile .label { width:140px; font-weight:700; color:#333; }
+	.profile .value { flex:1; }
+	.profile .actions { margin-top:1.25rem; display:flex; gap:0.5rem; }
+}
