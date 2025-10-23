@@ -13,19 +13,23 @@
                     <h1 style="text-align: center;">ERREGISTROA</h1>
                     <p>
                         <label for="Izena">Izena</label>
-                        <input type="text" name="izena" placeholder="Zure izena-abizenak sartu" required>
+                        <input type="text" name="izena" placeholder="Zure izena-abizenak sartu (Adib.: Asier Siñobas)" required>
                     </p>
                     <p>
                         <label for="NAN">NAN</label>
-                        <input type="text" name="nan" placeholder="Zure NAN-a sartu" required>
+                        <input type="text" name="nan" placeholder="Zure NAN-a sartu (Adib.: 11111111-Z)" required>
                     </p>
                     <p>
                         <label for="Jaiotze data">Jaiotze data</label>
-                        <input type="date" name="jaiotze data" placeholder="Zure jaoitze data sartu">
+                        <input type="text" name="jaiotze data" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" required>
+                    </p>
+                    <p>
+                        <label for="Telefonoa">Telefonoa</label>
+                        <input type="text" name="telefonoa" placeholder="Zure telefonoa sartu (Adib.: 612345678)" required>
                     </p>
                     <p>
                         <label for="Email">Email</label>
-                        <input type="email" name="email" placeholder="Zure email-a sartu">
+                        <input type="email" name="email" placeholder="Zure email-a sartu (Adib.: asier@ehu.eus)" required>
                     </p>
                     <div class="buttons">
                         <button class="btn primary" type="submit" id="register_submit" style="margin-top: 1rem;">
@@ -38,5 +42,6 @@
                 </form>
             </div>
         </div>
+        <script src="../js/register.js"></script>
     </body>
 </html>

@@ -16,6 +16,7 @@ body{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .site-header{
@@ -106,6 +107,7 @@ body{
 .btn.primary:hover{
   background: linear-gradient(180deg,var(--accent),#1f63d9);
   filter: brightness(0.93);
+  color: white;
 }
 
 /* arrisku-botoiak */
