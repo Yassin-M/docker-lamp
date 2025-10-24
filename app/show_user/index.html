@@ -5,13 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Mi perfil</title>
 		<link rel="stylesheet" href="../css/styles.css" />
-        <script src="javascript.js"></script>
+		<script src="/show_user/javascript.js" defer></script>
 	</head>
 	<body>
 		<main class="container profile">
 			<section class="panel">
 				<h2>Nire profila</h2>
-				<p>Hemen daude saioa hasi duen erabiltzailearen datuak, daturen bat aldatu nahi baduzu "Editatu" botoia sakatu</p>
+				<p>Hemen daude saioa hasi duen erabiltzailearen datuak...</p>
 
 				<div class="field">
 					<div class="label">NAN-a</div>
@@ -33,18 +33,18 @@
 					<div class="value" id="user-dob">--</div>
 				</div>
 
-                <div class="field">
+				<div class="field">
 					<div class="label">Telefonoa</div>
 					<div class="value" id="user-phone">--</div>
-                </div>
-				<div class="actions">
-                    <a class="btn" type="button" id="atzera"  href="../" role="button" style="margin-top: 1rem;">
-                        <img src="../img/atzera.png" width="50" height="50">
-                    </a>
-                    <a class="btn" type="button" id="atzera"  href="../" role="button" style="margin-top: 1rem;">
-                        <img src="../img/editatu.png" width="50" height="50">
-                    </a>
 				</div>
+
+				<div class="actions">
+					<a class="btn" href="../" style="margin-top: 1rem;">
+					<img src="../img/atzera.png" width="50" height="50">
+					</a>
+					<a class="btn" href="../modify_user/" style="margin-top: 1rem;">
+					<img src="../img/editatu.png" width="50" height="50">
+					</a>
 				</div>
 			</section>
 		</main>
