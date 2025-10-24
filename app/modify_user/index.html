@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Datuak aldatu</title>
+        <link rel="stylesheet" href="../css/styles.css" />
+        <script src="../js/modify_user.js" defer></script>
+    </head>
+    <body>
+    <main class="container profile">
+        <section class="panel">
+        <h2>Nire profila</h2>
+        <p>Zer datu aldatu nahi duzu?</p>
+        <form action="../config/modify_user.php" method="POST" id="modify-user-form">
+            <div class="field">
+                <div class="label">NAN-a</div>
+                <div class="value"><input class="input" type="text" id="user-id" name="nan" readonly /></div>
+            </div>
+
+            <div class="field">
+                <div class="label">Izena</div>
+                <div class="value"><input class="input" type="text" id="user-name" name="izena" /></div>
+            </div>
+
+            <div class="field">
+                <div class="label">Email-a</div>
+                <div class="value"><input class="input" type="email" id="user-email" name="email" /></div>
+            </div>
+
+            <div class="field">
+                <div class="label">Jaiotze-data</div>
+                <div class="value"><input class="input" type="date" id="user-dob" name="dob" /></div>
+            </div>
+
+            <div class="field">
+                <div class="label">Telefonoa</div>
+                <div class="value"><input class="input" type="tel" id="user-phone" name="telefonoa" /></div>
+            </div>
+
+            <div class="actions">
+                <a class="btn" href="../show_user/" title="Atzera">
+                <img src="../img/atzera.png" width="40" height="40">
+                </a>
+
+                <button id="save-btn" class="btn" title="Gorde">
+                <img src="../img/gorde.png" width="40" height="40">
+                </button>
+            </div>
+        </section>
+    </main>
+    </body>
+</html>

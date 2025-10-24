@@ -14,6 +14,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("user-phone").textContent = data.phone || "--";
   } catch (err) {
     console.error(err);
-    alert("No se pudo cargar el perfil del usuario");
+    alert("Ezin izan da erabiltzailearen profila kargatu");
   }
 });
