@@ -1,22 +1,25 @@
 <?php
-   include('../index.php'); //Datu basearekin konexioa
-   session_start();
-   $_SESSION = []:
+include('../index.php');
+session_start();
+$_SESSION = [];
+header('Content-Type: application/json; charset=utf-8');
 
-   // datuak formulariotik hartu
-   $email = $_POST['email'];
-   $pasahitza = $_POST['pasahitza'];
+$izena = mysqli_real_escape_string($conn, $_POST['izena'] ?? '');
+$pasahitza = mysqli_real_escape_string($conn, $_POST['pasahitza'] ?? '');
+$sql = "SELECT * FROM Erabiltzailea WHERE Izena = '$izena'";
 
-   // Konprobatu emaila existizen dela datu basean
-   $user_query = mysqli_query($conn, "SELECT * FROM Erabiltzilea WHERE email='$email'");
+$user_query = mysqli_query($conn, $sql);
 
-   if(mysqli_num_rows($user_query) == 1){
-      $erabiltzailea = mysqli_fetch_assoc($user_query);
-      if($usuario['pasahitza'] === $pasahitza){
-         $_SESSION['erabiltzailea'] = $erabiltzailea['izena'];
-      }
-   }else{
-      
-   }
+if(mysqli_num_rows($user_query) === 1){
+    $erabiltzailea = mysqli_fetch_assoc($user_query);
 
+    if($erabiltzailea['pasahitza'] === $pasahitza){
+        $_SESSION['nan'] = $erabiltzailea['nan'];
+        echo json_encode("success" => true,"message" => "Saioa hasita dago","nan" => $erabiltzailea['nan']);
+    } else {
+        echo json_encode(["success" => false, "message" => "Pasahitza txarto dago"]);
+    }
+} else {
+    echo json_encode(["success" => false, "message" => "Erabiltzailea ez da aurkitu"]);
+}
 ?>
