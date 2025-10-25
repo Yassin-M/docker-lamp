@@ -15,7 +15,8 @@ if(mysqli_num_rows($user_query) === 1){
 
     if($erabiltzailea['pasahitza'] === $pasahitza){
         $_SESSION['nan'] = $erabiltzailea['nan'];
-        echo json_encode("success" => true,"message" => "Saioa hasita dago","nan" => $erabiltzailea['nan']);
+        // devolver respuesta JSON bien formada
+        echo json_encode(["success" => true, "message" => "Saioa hasita dago", "nan" => $erabiltzailea['nan']]);
     } else {
         echo json_encode(["success" => false, "message" => "Pasahitza txarto dago"]);
     }

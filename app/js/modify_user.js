@@ -1,9 +1,19 @@
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await fetch("../config/get_user.php?json=1");
-    if (!response.ok) throw new Error("Error al obtener datos");
+    // Leer el NAN guardado en login.js (puede ser localStorage o sessionStorage)
+    const nan = sessionStorage.getItem("userNAN") || localStorage.getItem("userNAN");
+    console.log('modify_user: nan from storage =', nan);
+
+    // Si no hay nan en storage, intentaremos pedir al backend que use la sesión PHP
+    const url = nan ? `../config/get_user.php?nan=${encodeURIComponent(nan)}` : `../config/get_user.php`;
+    console.log('modify_user: fetching', url);
+
+    const response = await fetch(url, { credentials: 'same-origin' });
+    if (!response.ok) throw new Error("Error al obtener datos: HTTP " + response.status);
 
     const data = await response.json();
+    console.log('modify_user: response json =', data);
+    if (!data.success) throw new Error(data.message || 'No se obtuvo usuario');
 
     document.getElementById("user-id").value = data.id || "--";
     document.getElementById("user-name").value = data.nombre || "--";
@@ -12,7 +22,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("user-phone").value = data.phone || "--";
   } catch (err) {
     console.error(err);
-    alert("Ezin izan da erabiltzailearen datuak kargatu");
+    alert("Ezin izan da erabiltzailearen datuak kargatu: " + (err.message || err));
   }
 
   const form = document.getElementById("modify-user-form");

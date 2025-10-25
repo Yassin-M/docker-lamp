@@ -267,3 +267,25 @@ table.users td:nth-child(6){ width: 18%; }  /* Categoría / Acciones */
   table.users{ min-width: 560px; }
   .btn{ padding: 0.5rem 0.7rem; font-size: 0.9rem; }
 }
+
+/* Session badge (NAN) shown when user is logged in - pinned to the extreme top-right */
+#saioa_hasita.session-logged{
+  position: fixed;
+  right: 0; /* flush to the right edge */
+  top: 0;   /* flush to the top edge */
+  transform: translate(0, 0);
+  background: linear-gradient(180deg,#ffffff,#f3f7ff);
+  color: var(--accent);
+  border: 1px solid rgba(43,123,228,0.12);
+  padding: 0.5rem 0.9rem;
+  /* only round the bottom-left corner so the badge sits flush in the corner */
+  border-radius: 0 0 0 8px;
+  box-shadow: 0 8px 20px rgba(11,34,84,0.08);
+  z-index: 9999;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 520px){
+  #saioa_hasita.session-logged{ right: 0; top: 0; padding: 0.35rem 0.6rem; font-size: 0.85rem; }
+}
