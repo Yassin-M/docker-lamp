@@ -1,5 +1,6 @@
 <?php
    include("../index.php");
+   
    $item_izena = $_POST['karta_izena'];
    $item_kostua = $_POST['karta_kostua'];
    $item_bizitza = $_POST['karta_bizitza'];

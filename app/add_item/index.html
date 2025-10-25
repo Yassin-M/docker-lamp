@@ -8,28 +8,28 @@
     </head>
     <body class="centered-page">
         <div class="container">
-            <div class="panel Formularioa" id="add_item_form">
-                <form action="../config/add_item.php" method="POST">
+            <div class="panel Formularioa" id="form_div">
+                <form action="../config/add_item.php" name="formularioa" id="add_item_form" method="POST">
                     <h1 style="text-align: center;">KARTA GEHITU</h1>
                     <p>
                         <label for="Izena">Izena</label>
-                        <input type="text" name="karta_izena" placeholder="Sartu kartaren izena" required>
+                        <input type="text" name="karta_izena" id="izena" placeholder="Sartu kartaren izena" required>
                     </p>
                     <p>
                         <label for="Kostua">Kostua</label>
-                        <input type="text" name="karta_kostua" placeholder="Sartu kartaren kostua" required>
+                        <input type="text" name="karta_kostua" id="kostua" placeholder="Sartu kartaren kostua" required>
                     </p>
                     <p>
                         <label for="Bizitza">Bizitza</label>
-                        <input type="text" name="karta_bizitza" placeholder="Sartu kartaren bizitza" required>
+                        <input type="text" name="karta_bizitza" id="bizitza" placeholder="Sartu kartaren bizitza" required>
                     </p>
                     <p>
                         <label for="Erasoa">Erasoa</label>
-                        <input type="text" name="karta_erasoa" placeholder="Sartu kartaren erasoa" required>
+                        <input type="text" name="karta_erasoa" id="erasoa" placeholder="Sartu kartaren erasoa" required>
                     </p>
                     <p>
                         <label for="Mota">Mota</label>
-                        <input type="text" name="karta_mota" placeholder="Sartu kartaren mota" required>
+                        <input type="text" name="karta_mota" id="mota" placeholder="Sartu kartaren mota" required>
                     </p>
                     <div class="buttons">
                         <a class="btn" type="button" id="atzera"  href="../" role="button" style="margin-top: 1rem;">
@@ -46,4 +46,5 @@
             </div>
         </div>
         <script src="../js/add_item.js"></script>
+    </body>
 </html>
