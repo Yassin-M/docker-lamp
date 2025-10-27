@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (!response.ok) throw new Error("Error al obtener datos: HTTP " + response.status);
 
     const data = await response.json();
-    console.log('modify_user: response json =', data);
+    
     if (!data.success) throw new Error(data.message || 'No se obtuvo usuario');
 
     document.getElementById("user-id").value = data.id || "--";
