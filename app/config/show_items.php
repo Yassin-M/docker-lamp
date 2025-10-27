@@ -46,7 +46,7 @@ $sql = "SELECT izena, kostua, bizitza, erasoa, mota FROM Datuak ORDER BY izena A
 $result = $conn->query($sql);
 
 if (!$result) {
-    echo "<tr><td colspan='5'>Error en consulta: " . htmlspecialchars($conn->error) . "</td></tr>";
+    echo "<tr><td colspan='5'>Kontsulta errorea: " . htmlspecialchars($conn->error) . "</td></tr>";
     $conn->close();
     exit;
 }
@@ -68,7 +68,7 @@ if ($result->num_rows > 0) {
         echo "</tr>";
     }
 } else {
-    echo "<tr><td colspan='5'>No hay cartas en la base de datos.</td></tr>";
+    echo "<tr><td colspan='5'>Ez dago kartarik datu basean.</td></tr>";
 }
 
 $conn->close();
