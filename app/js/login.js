@@ -17,7 +17,7 @@ form.addEventListener("submit", async (e) => {
 
      if(result.success){
                 // Guardar NAN en storage
-                localStorage.setItem("userNAN", result.nan);
+                sessionStorage.setItem("userNAN", result.nan);
                 // Mostrar inmediatamente en la cabecera (badge)
                 const sessionEl = document.getElementById('saioa_hasita');
                 if(sessionEl){

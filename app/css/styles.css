@@ -289,3 +289,8 @@ table.users td:nth-child(6){ width: 18%; }  /* Categoría / Acciones */
 @media (max-width: 520px){
   #saioa_hasita.session-logged{ right: 0; top: 0; padding: 0.35rem 0.6rem; font-size: 0.85rem; }
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
