@@ -1,12 +1,19 @@
+function validEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validText(text) {
+  return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(text);
+}
+
+function validZenbakia(zenbakia) {
+  return /^\d{9}$/.test(zenbakia);
+}
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    // Leer el NAN guardado en login.js (puede ser localStorage o sessionStorage)
     const nan = sessionStorage.getItem("userNAN") || localStorage.getItem("userNAN");
-    console.log('modify_user: nan from storage =', nan);
 
-    // Si no hay nan en storage, intentaremos pedir al backend que use la sesión PHP
     const url = nan ? `../config/get_user.php?nan=${encodeURIComponent(nan)}` : `../config/get_user.php`;
-    console.log('modify_user: fetching', url);
 
     const response = await fetch(url, { credentials: 'same-origin' });
     if (!response.ok) throw new Error("Error al obtener datos: HTTP " + response.status);
@@ -37,12 +44,12 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     const datos = new FormData(form);
 
-    try {
-      const response = await fetch("../config/modify_user.php", {
-        method: "POST",
-        body: datos
-      });
-
+    if (validText(datos.get("izena")) && validEmail(datos.get("email")) && validZenbakia(datos.get("telefonoa"))) {
+      try {
+        const response = await fetch("../config/modify_user.php", {
+          method: "POST",
+          body: datos
+        }); 
       const result = await response.json();
 
       mensajeDiv.style.padding = "10px";
@@ -55,11 +62,31 @@ window.addEventListener("DOMContentLoaded", async () => {
       mensajeDiv.style.color = result.success ? "#2e7d32" : "#7d2e2e";
       mensajeDiv.textContent = result.message;
 
-    } catch (err) {
-      console.error("Error:", err);
+      } catch (err) {
+        console.error("Error:", err);
+        mensajeDiv.style.backgroundColor = "#f7c5c5";
+        mensajeDiv.style.color = "#7d2e2e";
+        mensajeDiv.textContent = "Errorea datuak bidaltzean.";
+      }
+    } else {
+      const izenaVal = datos.get("izena");
+      const emailVal = datos.get("email");
+      const telefonoVal = datos.get("telefonoa");
+
+      const failed = [];
+      if (!validText(izenaVal)) failed.push(`Mesedez, sartu baliozko izen bat")`);
+      if (!validEmail(emailVal)) failed.push(`Mesedez, sartu baliozko email bat")`);
+      if (!validZenbakia(telefonoVal)) failed.push(`Mesedez, sartu baliozko telefonoa")`);
+
+      mensajeDiv.style.padding = "10px";
+      mensajeDiv.style.borderRadius = "8px";
+      mensajeDiv.style.textAlign = "center";
+      mensajeDiv.style.fontWeight = "bold";
+      mensajeDiv.style.width = "fit-content";
+      mensajeDiv.style.margin = "20px auto";
       mensajeDiv.style.backgroundColor = "#f7c5c5";
       mensajeDiv.style.color = "#7d2e2e";
-      mensajeDiv.textContent = "Errorea datuak bidaltzean.";
-    }
+      mensajeDiv.textContent = "Erroreak: " + (failed.length ? failed.join(" ; ") : "Balioak ok.");
+     }
   });
 });
