@@ -4,9 +4,9 @@ session_start();
 $_SESSION = [];
 header('Content-Type: application/json; charset=utf-8');
 
-$izena = mysqli_real_escape_string($conn, $_POST['izena'] ?? '');
-$pasahitza = mysqli_real_escape_string($conn, $_POST['pasahitza'] ?? '');
-$sql = "SELECT * FROM Erabiltzailea WHERE Izena = '$izena'";
+$nan = trim(mysqli_real_escape_string($conn, $_POST['nan'] ?? ''));
+$pasahitza = trim(mysqli_real_escape_string($conn, $_POST['pasahitza'] ?? ''));
+$sql = "SELECT * FROM Erabiltzailea WHERE nan = '$nan'";
 
 $user_query = mysqli_query($conn, $sql);
 
@@ -15,8 +15,7 @@ if(mysqli_num_rows($user_query) === 1){
 
     if($erabiltzailea['pasahitza'] === $pasahitza){
         $_SESSION['nan'] = $erabiltzailea['nan'];
-        // devolver respuesta JSON bien formada
-        echo json_encode(["success" => true, "message" => "Saioa hasita dago", "nan" => $erabiltzailea['nan']]);
+        echo json_encode("success" => true,"message" => "Saioa hasita dago","nan" => $erabiltzailea['nan']);
     } else {
         echo json_encode(["success" => false, "message" => "Pasahitza txarto dago"]);
     }

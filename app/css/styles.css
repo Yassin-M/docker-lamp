@@ -294,3 +294,10 @@ table.users td:nth-child(6){ width: 18%; }  /* Categoría / Acciones */
   pointer-events: none;
   opacity: 0.5;
 }
+
+.error {
+  color: #842029;
+  font-size: 0.9em;
+  display: block;
+  margin-top: 4px;
+}

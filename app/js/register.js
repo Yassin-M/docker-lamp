@@ -7,24 +7,32 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    document.querySelectorAll(".error").forEach(el => el.textContent = "");
+
     const nombreCompleto = document.getElementById("izena").value;
     const dni = document.getElementById("nan").value;
     const telefono = document.getElementById("zenbakia").value;
     const email = document.getElementById("email").value;
 
     const errores = [];
-    if (!validText(nombreCompleto)) errores.push("El nombre no es válido");
-    if (!validDni(dni)) errores.push("El DNI no es válido");
-    if (!validZenbakia(telefono)) errores.push("El número debe tener 9 dígitos");
-    if (!validEmail(email)) errores.push("El email no es válido");
+    if (!validText(nombreCompleto) || nombreCompleto.length>15){
+      document.getElementById("error-izena").textContent = "Izen luzeegia duzu (15 karaktere gehienez ipin daitezke).";
+      errores.push("Izena ez da baliozkoa");
+    } 
+    if (!validDni(dni)){
+      document.getElementById("error-nan").textContent = "NAN-a ez da baliozkoa (8 zenbaki eta letra 1).";
+      errores.push("NAN-a ez da baliozkoa");
+    } 
+    if (!validZenbakia(telefono)){
+      document.getElementById("error-zenbaki").textContent = "Zenbakia ez da baliozkoa (Gogoratu: telefono zenbaki bat gehienez 9 digitu izan behar ditu).";
+      errores.push("Zenbakia 9 digitu izan behar ditu");
+    } 
+    if (!validEmail(email)){
+      document.getElementById("error-email").textContent = "email-a ez da baliozkoa (izena@domeinua.com).";
+      errores.push("emaila ez da baliozkoa");
+    } 
 
     if (errores.length > 0) {
-      mensajeDiv.textContent = "Errores:\n- " + errores.join("\n- ");
-      mensajeDiv.style.backgroundColor = "#f8d7da";
-      mensajeDiv.style.color = "#842029";
-      mensajeDiv.style.padding = "10px";
-      mensajeDiv.style.borderRadius = "8px";
-      mensajeDiv.style.textAlign = "center";
       return;
     }
 
