@@ -26,6 +26,26 @@ function validKostua(kostua) {
     return /^[1-9]$/.test(kostua);
 }
 
+function getItemFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('item');
+}
+
+async function loadItem(itemName) {
+    const endpoint = '../config/modify_item.php';
+    const title = document.getElementById('form-title');
+    if (!itemName) return;
+
+    try {
+        const res = await fetch(`${endpoint}?item=${encodeURIComponent(itemName)}`, { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        title.textContent = `KARTA EDITATU - ${itemName}`;
+
+    } catch (err) {
+        console.error('Error cargando carta:', err);
+    }
+}
+
 // Asociar la función al submit del formulario
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("modify-item-form");
@@ -42,4 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
             form.submit();
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const item = getItemFromURL();
+    loadItem(item);
 });

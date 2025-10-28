@@ -1,5 +1,7 @@
 (function () {
   const tbody = document.getElementById('item-tbody');
+  const cardTitle = document.getElementById('card-title');
+  const editButton = document.getElementById('edit-button');
   const endpoint = '../config/show_item.php';
 
   function getItemFromURL() {
@@ -15,6 +17,8 @@
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const html = await res.text();
       tbody.innerHTML = html;
+      cardTitle.textContent = `Karta - ${itemName}`;
+      editButton.href = `../modify_item?item=${encodeURIComponent(itemName)}`;
     } catch (err) {
       console.error('Error cargando carta:', err);
     }
