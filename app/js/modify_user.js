@@ -75,9 +75,9 @@ window.addEventListener("DOMContentLoaded", async () => {
       const telefonoVal = datos.get("telefonoa");
 
       const failed = [];
-      if (!validText(izenaVal)) failed.push(`Mesedez, sartu baliozko izen bat")`);
-      if (!validEmail(emailVal)) failed.push(`Mesedez, sartu baliozko email bat")`);
-      if (!validZenbakia(telefonoVal)) failed.push(`Mesedez, sartu baliozko telefonoa")`);
+      if (!validText(izenaVal)) failed.push(`Mesedez, sartu baliozko izen bat`);
+      if (!validEmail(emailVal)) failed.push(`Mesedez, sartu baliozko email bat`);
+      if (!validZenbakia(telefonoVal)) failed.push(`Mesedez, sartu baliozko telefonoa`);
       if (izenaVal.length > 15) failed.push("Mesedez, sartu izen labur bat (15 karaktere gehienez)");
 
       mensajeDiv.style.padding = "10px";
