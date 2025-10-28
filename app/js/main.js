@@ -1,4 +1,3 @@
-console.log('Script show_session.js cargado correctamente');
 window.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('saioa_hasita');
   const btnEditProfile = document.getElementById('btn-edit-profile');
@@ -25,6 +24,11 @@ window.addEventListener('DOMContentLoaded', () => {
         btnEditProfile.classList.remove('disabled');
         btnEditProfile.setAttribute('aria-disabled', 'false');
         btnEditProfile.setAttribute('href', 'show_user/');
+
+        btnEditProfile.addEventListener('click', (event) => {
+          event.preventDefault();
+          window.location.href = `/show_user?user=${encodeURIComponent(nan)}`;
+        });
       }
     }
   } catch (err) {

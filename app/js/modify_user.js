@@ -11,9 +11,10 @@ function validZenbakia(zenbakia) {
 }
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    const nan = sessionStorage.getItem("userNAN") || localStorage.getItem("userNAN");
+    const urlParams = new URLSearchParams(window.location.search);
+    const nan = urlParams.get("user");
 
-    const url = nan ? `../config/get_user.php?nan=${encodeURIComponent(nan)}` : `../config/get_user.php`;
+    const url = nan ? `../config/show_user.php?user=${encodeURIComponent(nan)}` : `../config/show_user.php`;
 
     const response = await fetch(url, { credentials: 'same-origin' });
     if (!response.ok) throw new Error("Error al obtener datos: HTTP " + response.status);

@@ -259,7 +259,7 @@ table.users td:nth-child(6){ width: 18%; }  /* Categoría / Acciones */
 
 /* Small screens: allow horizontal scroll and reduce paddings */
 @media (max-width: 720px){
-  table.users{ min-width: 640px; }
+  table.users{ min-width: 400px; }
   table.users thead th, table.users tbody td{ padding: 0.6rem 0.7rem; }
   .container{ width: 96%; }
 }

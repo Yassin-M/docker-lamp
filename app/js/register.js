@@ -47,8 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (result.success) {
-        sessionStorage.setItem("userNAN", result.nan);
-
         mensajeDiv.textContent = "Erregistroa burutu da!";
         mensajeDiv.style.backgroundColor = "#c8f7c5";
         mensajeDiv.style.color = "#2e7d32";

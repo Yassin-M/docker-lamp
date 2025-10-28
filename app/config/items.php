@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
         echo "<td><span class='badge'>{$mota}</span></td>";
         echo '  <td class="actions">';
         echo '    <a class="btn" href="' . $showUrl . '">Ikusi</a> ';
-        echo '    <a class="btn" href="' . $deleteUrl . '">Ezabatu</a>';
+        echo '    <a class="btn danger" href="' . $deleteUrl . '">Ezabatu</a>';
         echo '  </td>';
         echo "</tr>";
     }
