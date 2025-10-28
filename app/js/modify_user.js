@@ -45,7 +45,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     const datos = new FormData(form);
 
-    if (validText(datos.get("izena")) && validEmail(datos.get("email")) && validZenbakia(datos.get("telefonoa"))) {
+    if (validText(datos.get("izena")) && validEmail(datos.get("email")) && validZenbakia(datos.get("telefonoa")) && datos.get("izena").length <= 15) {
       try {
         const response = await fetch("../config/modify_user.php", {
           method: "POST",
@@ -78,6 +78,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       if (!validText(izenaVal)) failed.push(`Mesedez, sartu baliozko izen bat")`);
       if (!validEmail(emailVal)) failed.push(`Mesedez, sartu baliozko email bat")`);
       if (!validZenbakia(telefonoVal)) failed.push(`Mesedez, sartu baliozko telefonoa")`);
+      if (izenaVal.length > 15) failed.push("Mesedez, sartu izen labur bat (15 karaktere gehienez)");
 
       mensajeDiv.style.padding = "10px";
       mensajeDiv.style.borderRadius = "8px";
