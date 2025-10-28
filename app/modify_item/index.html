@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Datuak aldatu</title>
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body class="centered-page">
+    <div class="container">
+        <div class="panel Formularioa" id="form_div">
+            <form action="../config/modify_item.php" method="POST" id="modify-item-form">
+                <h1 style="text-align: center;">KARTA EDITATU</h1>
+                <br>
+                <p>Zer datu aldatu nahi duzu?</p>
+                <br>
+                <div>
+                    <label for="kostua">Kostua</label>
+                    <input type="text" id="kostua" name="kostua">
+                </div>
+
+                <div>
+                    <label for="bizitza">Bizitza</label>
+                    <input type="text" id="bizitza" name="bizitza">
+                </div>
+
+                <div>
+                    <label for="erasoa">Erasoa</label>
+                    <input type="text" id="erasoa" name="erasoa">
+                </div>
+
+                <div>
+                    <label for="mota">Mota</label>
+                    <input type="text" id="mota" name="mota">
+                </div>
+
+                <div class="container_actions">
+                    <a class="btn" href="../show_item/" title="Atzera">
+                    <img src="../img/atzera.png" width="50" height="50">
+                    </a>
+                    <button class="btn" id="save-btn" title="Gorde">
+                    <img src="../img/gorde.png" width="50" height="50">
+                    </button>
+                </div>
+    </div>
+    <script src="../js/modify_item.js"></script>
+    </body>
+</html>

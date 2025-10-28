@@ -228,6 +228,13 @@ table.users td:nth-child(6){ width: 18%; }  /* Categoría / Acciones */
   text-align: center;
 }
 
+.container_actions{
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 10px;
+}
+
 .badge{
   display: inline-block;
   padding: 0.2rem 0.5rem;
