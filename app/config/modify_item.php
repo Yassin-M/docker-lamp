@@ -2,7 +2,7 @@
 include("../index.php");
 header('Content-Type: application/json; charset=utf-8');
 
-if (isset($_GET['?item'])) {
+if (isset($_GET['item'])) {
     $item = $_GET['item']; // Guarda el valor del parámetro
     $item_izena = urldecode($item);
     $item_izena = htmlspecialchars($item_izena);

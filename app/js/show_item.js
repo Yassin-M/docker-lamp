@@ -15,12 +15,27 @@
     try {
       const res = await fetch(`${endpoint}?item=${encodeURIComponent(itemName)}`, { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
-      const html = await res.text();
-      tbody.innerHTML = html;
-      cardTitle.textContent = `Karta - ${itemName}`;
+
+      const data = await res.json(); // Cambiado para procesar JSON
+      if (!data.success) throw new Error(data.message || 'Errorea itema kargatzean.');
+
+      // Generar el HTML dinámicamente
+      const rowHTML = `
+        <tr>
+          <td>${data.izena || ''}</td>
+          <td>${data.kostua || ''}</td>
+          <td>${data.bizitza || ''}</td>
+          <td>${data.erasoa || ''}</td>
+          <td>${data.mota || ''}</td>
+        </tr>
+      `;
+
+      tbody.innerHTML = rowHTML;
+      cardTitle.textContent = `Karta - ${data.izena || itemName}`;
       editButton.href = `../modify_item?item=${encodeURIComponent(itemName)}`;
     } catch (err) {
       console.error('Error cargando carta:', err);
+      tbody.innerHTML = `<tr><td colspan="5">Errorea itema kargatzean: ${err.message}</td></tr>`;
     }
   }
 

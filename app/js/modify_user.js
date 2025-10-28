@@ -35,7 +35,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   const form = document.getElementById("modify-user-form");
 
-
   const mensajeDiv = document.createElement("div");
   mensajeDiv.style.marginTop = "20px";
   form.after(mensajeDiv);
@@ -91,4 +90,14 @@ window.addEventListener("DOMContentLoaded", async () => {
       mensajeDiv.textContent = "Erroreak: " + (failed.length ? failed.join(" ; ") : "Balioak ok.");
      }
   });
+
+  const atzeraLink = document.getElementById("atzera_modify_user");
+  if (atzeraLink) {
+    atzeraLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const nan = new URLSearchParams(window.location.search).get("user");
+      const redirectUrl = `../show_user/?user=${encodeURIComponent(nan)}`;
+      window.location.href = redirectUrl;
+    });
+  }
 });
