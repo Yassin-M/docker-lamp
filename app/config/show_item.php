@@ -37,12 +37,11 @@ if (!function_exists('mysqli_connect') || !$included || !isset($conn) || !$conn)
         echo "</tr>";
     }
 
-    // Also emit a small HTML comment to help debugging
     echo "\n<!-- show_items.php: demo data rendered because mysqli/connection is not available -->\n";
     exit;
 }
 
-$sql = "SELECT izena, kostua, bizitza, erasoa, mota FROM Datuak ORDER BY izena ASC";
+$sql = "SELECT izena, mota FROM Datuak ORDER BY izena ASC";
 $result = $conn->query($sql);
 
 if (!$result) {

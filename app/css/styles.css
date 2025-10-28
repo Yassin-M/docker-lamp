@@ -118,6 +118,7 @@ body{
   background: transparent;
   color: var(--danger);
   border: 1px solid rgba(224,49,49,0.12);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
 .btn.danger:hover{

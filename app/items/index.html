@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mostrar usuarios</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Gure ISSKS Web Aplikazioa</h1>
+    </header>
+
+    <main class="container">
+      <section class="panel" aria-labelledby="show-title">
+        <h2 id="show-title">Karta entziklopedia</h2>
+
+        <p class="muted" style="color:var(--muted);">Jarraian, "Clash Royale"-ko karta entziklopedia agertzen da. Karta bakoitzarentzat, haren izena, kostua, bizitza/eraso puntuak eta kalitatea agertzen dira.</p>
+
+        <div class="buttons buttons-right">
+          <a class="btn" href="../" role="button">Atzera</a>
+          <a class="btn" href="../add_item/" role="button">Karta gehitu</a>
+        </div>
+
+        <div class="table-wrap mt-sm">
+          <table class="users" aria-describedby="show-title">
+            <thead>
+              <tr>
+                <th>Izena</th>
+                <th>Mota</th>
+                <th>Ekintzak</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody">
+              <tr><td colspan="3" style="text-align:center;color:var(--muted);padding:1rem;">Datuak kargatzen...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/items.js"></script>
+
+    <footer class="site-footer">
+      <small>Zibergalaktikoak</small>
+    </footer>
+  </body>
+</html>

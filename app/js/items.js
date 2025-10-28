@@ -4,7 +4,7 @@
 
 (function () {
   const tbody = document.getElementById('users-tbody');
-  const endpoint = '../config/show_items.php';
+  const endpoint = '../config/items.php';
   let polling = true; // set to false to pause
   let intervalId = null;
 
