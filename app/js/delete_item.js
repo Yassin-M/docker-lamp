@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const itemName = urlParams.get("item");
   const itemNameElement = document.getElementById("item-name");
-  const deleteButton = document.getElementById("delete-btn");
+  const deleteButton = document.getElementById("item_delete_submit");
 
   if (itemName) {
     itemNameElement.textContent = itemName;

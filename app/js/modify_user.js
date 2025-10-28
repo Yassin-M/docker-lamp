@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     alert("Ezin izan da erabiltzailearen datuak kargatu: " + (err.message || err));
   }
 
-  const form = document.getElementById("modify-user-form");
+  const form = document.getElementById("user_modify_form");
 
   const mensajeDiv = document.createElement("div");
   mensajeDiv.style.marginTop = "20px";

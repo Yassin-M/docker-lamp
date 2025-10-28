@@ -60,7 +60,7 @@ async function loadItem(itemName) {
 
 // Asociar la función al submit del formulario
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("modify-item-form");
+    const form = document.getElementById("item_modify_form");
 
     const mensajeDiv = document.createElement("div");
     mensajeDiv.style.marginTop = "20px";

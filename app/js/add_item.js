@@ -29,7 +29,7 @@ function validKostua(kostua) {
 
 // Asociar la función al submit del formulario
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("add_item_form");
+    const form = document.getElementById("item_add_form");
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
