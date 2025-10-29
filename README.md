@@ -62,7 +62,11 @@ Web Sistema honek, **Docker 28.4.0**, **Docker Compose 2.39.2** eta **Ubuntu 24.
   - [phpMyAdmin](http://localhost:8890/) web orrialdera sartu.
   - _**admin**_ erabiltzailea eta _**test**_ pasahitza erabili saioa hasteko.
   - **Importar** botoiari eman, ondoren **Examinar** eta azkenik proiektuaren direktorioan dagoen **database.sql** fitxategia hautatu.
-- Azkenik, [Web Orrialde](http://localhost:81/) -ra nabigatu eta sistema erabili.
+- [Web Orrialde](http://localhost:81/) -ra nabigatu eta sistema erabili.
+- Sistema erabiltzeari utzi ondoren, kontainerrak gelditu:
+  ```bash
+    docker-compose stop
+  ```
 
 
 ## Proiektuaren egoera
