@@ -42,7 +42,7 @@ Hona hemen gure aplikazioaren ezaugarri nagusiak:
 
 
 ## Pantaila-argazkiak
-![Example screenshot](./img/screenshot.png)
+!(.irudiak/Web_irudia.png)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
@@ -57,11 +57,11 @@ Web Sistema honek, **Docker 28.4.0**, **Docker Compose 2.39.2** eta **Ubuntu 24.
 - Gero, sistemaren kontainerrak martxan jarri:
   ```bash
     docker-compose up -d
-  ``
--Ondoren, datu-basea inportatu, horretarako:
+  ```
+- Ondoren, datu-basea inportatu, horretarako:
   - [phpMyAdmin](http://localhost:8890/) web orrialdera sartu.
-  - **admin** erabiltzailea eta **test** pasahitza erabili saioa hasteko.
-  - **Importar** botoiari eman, ondoren **Examinar** eta azkenik proiektuaren direktorioaren dagoen **database.sql** fitxategia hautatu.
+  - _**admin**_ erabiltzailea eta _**test**_ pasahitza erabili saioa hasteko.
+  - **Importar** botoiari eman, ondoren **Examinar** eta azkenik proiektuaren direktorioan dagoen **database.sql** fitxategia hautatu.
 - Azkenik, [Web Orrialde](http://localhost:81/) -ra nabigatu eta sistema erabili.
 
 
