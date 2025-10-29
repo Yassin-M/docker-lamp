@@ -26,7 +26,9 @@
           <td>${data.kostua || ''}</td>
           <td>${data.bizitza || ''}</td>
           <td>${data.erasoa || ''}</td>
-          <td>${data.mota || ''}</td>
+          <td>
+            <span class="badge">${data.mota || ''}</span>
+          </td>
         </tr>
       `;
 

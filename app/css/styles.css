@@ -167,21 +167,20 @@ label {
   display: inline-block;
 }
 
-/* Tabla de usuarios / cartas */
+/* karten taula */
 .table-wrap{
   width: 100%;
-  overflow-x: auto; /* permite scroll horizontal en móviles */
+  overflow-x: auto;
 }
 
-table.users{
+table{
   width: 100%;
   border-collapse: collapse;
-  min-width: 720px; /* evita que las columnas se compriman demasiado */
   background: white;
   font-size: 0.95rem;
 }
 
-table.users thead th{
+table thead th{
   text-align: left;
   padding: 0.9rem 1rem;
   background: linear-gradient(180deg,#fbfdff,#f3f7ff);
@@ -193,28 +192,27 @@ table.users thead th{
   z-index: 1;
 }
 
-table.users tbody td{
+table tbody td{
   padding: 0.85rem 1rem;
   border-bottom: 1px solid rgba(15,23,42,0.04);
   vertical-align: middle;
 }
 
-/* Zebra rows */
-table.users tbody tr:nth-child(even){
+/* Zebra ilarak */
+table tbody tr:nth-child(even){
   background: rgba(15,23,42,0.01);
 }
 
-table.users tbody tr:hover{
+table tbody tr:hover{
   background: rgba(43,123,228,0.04);
 }
 
-/* Column sizing helpers */
-table.users td:nth-child(1){ width: 6%; }   /* ID / o ícono */
-table.users td:nth-child(2){ width: 36%; }  /* Nombre */
-table.users td:nth-child(3){ width: 12%; }  /* Coste */
-table.users td:nth-child(4){ width: 14%; }  /* Vida */
-table.users td:nth-child(5){ width: 14%; }  /* Daño */
-table.users td:nth-child(6){ width: 18%; }  /* Categoría / Acciones */
+/* Zutabeen tamaina */
+table td:nth-child(1){ width: 36%; }   /* Izena */
+table td:nth-child(2){ width: 16%; }  /* Kostua/mota */
+table td:nth-child(3){ width: 16%; }  /* Bizitza */
+table td:nth-child(4){ width: 16%; }  /* Erasoa */
+table td:nth-child(5){ width: 16%; }  /* Mota */
 
 /* Cost/pill and category badge */
 .pill{
@@ -266,13 +264,13 @@ table.users td:nth-child(6){ width: 18%; }  /* Categoría / Acciones */
 
 /* Small screens: allow horizontal scroll and reduce paddings */
 @media (max-width: 720px){
-  table.users{ min-width: 400px; }
-  table.users thead th, table.users tbody td{ padding: 0.6rem 0.7rem; }
+  table{ min-width: 400px; }
+  table thead th, table tbody td{ padding: 0.6rem 0.7rem; }
   .container{ width: 96%; }
 }
 
 @media (max-width: 420px){
-  table.users{ min-width: 560px; }
+  table{ min-width: 560px; }
   .btn{ padding: 0.5rem 0.7rem; font-size: 0.9rem; }
 }
 

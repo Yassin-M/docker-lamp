@@ -7,123 +7,97 @@
 -- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
 -- Versión de PHP: 8.2.27
 
+CREATE DATABASE IF NOT EXISTS `database` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `database`;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `database`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Datuak`
---
-
-CREATE TABLE `Datuak` (
+CREATE TABLE IF NOT EXISTS `Datuak` (
   `izena` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `kostua` int(11) NOT NULL,
   `bizitza` int(11) NOT NULL,
   `erasoa` int(11) NOT NULL,
-  `mota` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `mota` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`izena`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO Datuak (izena, kostua, bizitza, erasoa, mota)
+INSERT IGNORE INTO Datuak (izena, kostua, bizitza, erasoa, mota)
 VALUES
--- --- COMUNES ---
-('Caballero', 3, 1654, 192, 'Común'),
-('Arqueras', 3, 290, 107, 'Común'),
-('Duendes', 2, 202, 121, 'Común'),
-('Esqueletos', 1, 81, 81, 'Común'),
-('Esbirros', 3, 230, 103, 'Común'),
-('Cañón', 3, 768, 203, 'Común'),
-('Bárbaros', 5, 480, 181, 'Común'),
-('Descarga', 2, NULL, 192, 'Común'),
-('Flechas', 3, NULL, 303, 'Común'),
-('Gólem de Hielo', 2, 848, 84, 'Común'),
-('Gigante Noble', 6, 1792, 321, 'Común'),
+-- --- ARRUNTAK ---
+('Zalduna', 3, 1654, 192, 'Arrunta'),
+('Arkulariak', 3, 290, 107, 'Arrunta'),
+('Iratxoak', 2, 202, 121, 'Arrunta'),
+('Eskeletoak', 1, 81, 81, 'Arrunta'),
+('Morroiak', 3, 230, 103, 'Arrunta'),
+('Kanoia', 3, 768, 203, 'Arrunta'),
+('Barbaroak', 5, 480, 181, 'Arrunta'),
+('Deskarga', 2, NULL, 192, 'Arrunta'),
+('Geziak', 3, NULL, 303, 'Arrunta'),
+('Izotz Golema', 2, 848, 84, 'Arrunta'),
+('Erraldoi Noblea', 6, 1792, 321, 'Arrunta'),
 
--- --- ESPECIALES ---
-('Montapuercos', 4, 1548, 298, 'Especial'),
-('Bola de Fuego', 4, NULL, 689, 'Especial'),
-('Mosquetera', 4, 712, 218, 'Especial'),
-('Mini P.E.K.K.A.', 4, 1228, 693, 'Especial'),
-('Gigante', 5, 3984, 254, 'Especial'),
-('Mago', 5, 712, 281, 'Especial'),
-('Valquiria', 4, 1908, 267, 'Especial'),
-('Choza de Duendes', 5, 1144, NULL, 'Especial'),
-('Ariete de Batalla', 4, 896, 292, 'Especial'),
-('Curandera Guerrera', 4, 1260, 137, 'Especial'),
+-- --- BEREZIAK ---
+('Txerrimuntatzaile', 4, 1548, 298, 'Berezia'),
+('Su Bola', 4, NULL, 689, 'Berezia'),
+('Mosketaria', 4, 712, 218, 'Berezia'),
+('Mini P.E.K.K.A.', 4, 1228, 693, 'Berezia'),
+('Erraldoia', 5, 3984, 254, 'Berezia'),
+('Magoa', 5, 712, 281, 'Berezia'),
+('Balquiria', 4, 1908, 267, 'Berezia'),
+('Iratxoen Etxola', 5, 1144, NULL, 'Berezia'),
+('Borroka Arietea', 4, 896, 292, 'Berezia'),
+('Gerlarien Sendagilea', 4, 1260, 137, 'Berezia'),
 
--- --- ÉPICAS ---
-('P.E.K.K.A.', 7, 3458, 678, 'Épica'),
-('Bebé Dragón', 4, 1148, 160, 'Épica'),
-('Ejército de Esqueletos', 3, 81, 81, 'Épica'),
-('Príncipe', 5, 1868, 381, 'Épica'),
-('Bruja', 5, 836, 133, 'Épica'),
-('Globo Bombástico', 5, 1672, 902, 'Épica'),
-('Ballesta', 6, 1548, 34, 'Épica'),
-('Rayo', 6, NULL, 1032, 'Épica'),
-('Barril de Duendes', 3, 202, 121, 'Épica'),
-('Furia', 2, NULL, NULL, 'Épica'),
-('Veneno', 4, NULL, 96, 'Épica'), -- Daño por segundo
+-- --- EPIKOAK ---
+('P.E.K.K.A.', 7, 3458, 678, 'Epikoa'),
+('Haur Dragoi', 4, 1148, 160, 'Epikoa'),
+('Eskeletoen Armada', 3, 81, 81, 'Epikoa'),
+('Printzea', 5, 1868, 381, 'Epikoa'),
+('Sorgina', 5, 836, 133, 'Epikoa'),
+('Bonba Globoa', 5, 1672, 902, 'Epikoa'),
+('Balezta', 6, 1548, 34, 'Epikoa'),
+('Tximista', 6, NULL, 1032, 'Epikoa'),
+('Iratxoen Kupela', 3, 202, 121, 'Epikoa'),
+('Amorrua', 2, NULL, NULL, 'Epikoa'),
+('Pozoia', 4, NULL, 96, 'Epikoa'),
 
--- --- LEGENDARIAS ---
-('Mago de Hielo', 3, 700, 109, 'Legendaria'),
-('Princesa', 3, 261, 169, 'Legendaria'),
-('Minero', 3, 1210, 192, 'Legendaria'),
-('El Tronco', 2, NULL, 290, 'Legendaria'),
-('Dragón Infernal', 4, 1172, 87, 'Legendaria'), -- Daño inicial que aumenta
-('Chispitas', 6, 1452, 1331, 'Legendaria'),
-('Mago Eléctrico', 4, 712, 116, 'Legendaria'),
-('Leñador', 4, 1152, 240, 'Legendaria'),
-('Cementerio', 5, NULL, 81, 'Legendaria'),
-('Megacaballero', 7, 3993, 266, 'Legendaria'),
-('Fénix', 4, 984, 278, 'Legendaria'),
+-- --- LEGENDARIOAK ---
+('Izotz Magoa', 3, 700, 109, 'Legendarioa'),
+('Printzesa', 3, 261, 169, 'Legendarioa'),
+('Meatzaria', 3, 1210, 192, 'Legendarioa'),
+('Enborra', 2, NULL, 290, 'Legendarioa'),
+('Infernu Dragoia', 4, 1172, 87, 'Legendarioa'),
+('Tximista', 6, 1452, 1331, 'Legendarioa'),
+('Mago Elektrikoa', 4, 712, 116, 'Legendarioa'),
+('Basomutila', 4, 1152, 240, 'Legendarioa'),
+('Hilerria', 5, NULL, 81, 'Legendarioa'),
+('Mega Zalduna', 7, 3993, 266, 'Legendarioa'),
+('Fenix', 4, 984, 278, 'Legendarioa'),
 
--- --- CAMPEONES ---
-('Reina Arquera', 5, 1096, 240, 'Campeón'),
-('Rey Esqueleto', 4, 2184, 203, 'Campeón'),
-('Caballero Dorado', 4, 1812, 192, 'Campeón'),
-('Monje', 5, 1450, 228, 'Campeón'),
-('Principito', 3, 960, 109, 'Campeón');
+-- --- GARAILEAK ---
+('Arkularien Erregina', 5, 1096, 240, 'Garailea'),
+('Eskeletoen Erregea', 4, 2184, 203, 'Garailea'),
+('Urrezko Zalduna', 4, 1812, 192, 'Garailea'),
+('Monjea', 5, 1450, 228, 'Garailea'),
+('Printzetxoa', 3, 960, 109, 'Garailea');
+
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `Erabiltzailea`
---
-
-CREATE TABLE `Erabiltzailea` (
+CREATE TABLE IF NOT EXISTS `Erabiltzailea` (
   `nan` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL,
   `izena` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jaiotze_data` date NOT NULL,
   `tlf` int(11) NOT NULL,
   `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pasahitza` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL
+  `pasahitza` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`nan`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT IGNORE INTO Erabiltzailea (nan, izena, jaiotze_data, tlf, email, pasahitza)
+VALUES
+('12345678Z', 'admin', '2000-01-01', 123456789, 'admin@example.com', PASSWORD('test'));
 
---
--- Indices de la tabla `Datuak`
---
-ALTER TABLE `Datuak`
-  ADD PRIMARY KEY (`izena`);
-
---
--- Indices de la tabla `Erabiltzailea`
---
-ALTER TABLE `Erabiltzailea`
-  ADD PRIMARY KEY (`nan`),
-  ADD UNIQUE KEY `email` (`email`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
