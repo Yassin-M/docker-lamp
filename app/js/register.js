@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mezuak.push("Izen luzeegia duzu (15 karaktere gehienez ipin daitezke).");
     }
 
-    if (mensajes.length > 0) {
+    if (mezuak.length > 0) {
       document.getElementById("error-izena").textContent = mezuak.join(" ");
     }
 
