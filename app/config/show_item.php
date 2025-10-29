@@ -9,27 +9,29 @@ if (function_exists('mysqli_connect')) {
 }
 ob_end_clean();
 
+// DB konexioaren egiaztapena
 if (!$included) {
     echo json_encode(['success' => false, 'message' => 'Errorea datu basearekin konektatzean.']);
     exit;
 }
 
+// Item ez badago, errorea itzuli
 if (!isset($_GET['item'])) {
     echo json_encode(['success' => false, 'message' => 'Ez da itemik zehaztu.']);
     exit;
 }
 
+// Parametroa lortu eta prestatu
 $item = $_GET['item'];
-$item_izena = htmlspecialchars(urldecode($item));
+$item_izena = urldecode($item);
 
-$sql = "SELECT izena, kostua, bizitza, erasoa, mota FROM Datuak WHERE izena = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('s', $item_izena);
-$stmt->execute();
-$result = $stmt->get_result();
+// SQL kontsulta zuzenean parametroarekin
+$sql = "SELECT izena, kostua, bizitza, erasoa, mota FROM Datuak WHERE izena = '$item_izena'";
+$result = mysqli_query($conn, $sql);
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
+// Emaitza egiaztatu eta JSON erantzuna osatu
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
     echo json_encode([
         'success' => true,
         'izena' => $row['izena'],
@@ -42,6 +44,5 @@ if ($result->num_rows > 0) {
     echo json_encode(['success' => false, 'message' => 'Itema ez da aurkitu.']);
 }
 
-$stmt->close();
-$conn->close();
+mysqli_close($conn);
 ?>

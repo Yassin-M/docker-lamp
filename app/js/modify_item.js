@@ -1,3 +1,4 @@
+// Datuen formatua egiaztatu
 function datuakegiaztatu(pKostua, pBizitza, pErasoa, pMota) {
     let erroreak = [];
 
@@ -14,23 +15,24 @@ function datuakegiaztatu(pKostua, pBizitza, pErasoa, pMota) {
     }
 }
 
+// Funtzio laguntzaileak formatua egiaztatzeko
 function validText(text) {
     return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(text);
 }
-
 function validNumber(number) {
     return /^\d+$/.test(number);
 }
-
 function validKostua(kostua) {
     return /^[1-9]$/.test(kostua);
 }
 
+// URL-tik kartaren izena lortu
 function getItemFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get('item');
 }
 
+// Kartaren datuak kargatu
 async function loadItem(itemName) {
     const endpoint = '../config/show_item.php';
     const title = document.getElementById('form-title');
@@ -53,18 +55,16 @@ async function loadItem(itemName) {
         document.getElementById("mota").value = data.mota || '';
 
     } catch (err) {
-        console.error('Error cargando carta:', err);
-        alert("Errorea itema kargatzean: " + (err.message || err));
+        console.error('Errorea karta kargatzean:', err);
+        alert("Errorea karta kargatzean: " + (err.message || err));
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("item_modify_form");
+    const mezuaDiv = document.getElementById("mezua");
 
-    const mensajeDiv = document.createElement("div");
-    mensajeDiv.style.marginTop = "20px";
-    form.after(mensajeDiv);
-
+    // Formularioa bidaltzean
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -73,35 +73,41 @@ document.addEventListener("DOMContentLoaded", () => {
         const erasoa = document.getElementById("erasoa").value;
         const mota = document.getElementById("mota").value;
 
-        if (datuakegiaztatu(kostua, bizitza, erasoa, mota)) {
-            try {
-                const datos = new FormData(form);
-                const response = await fetch(`../config/modify_item.php?item=${encodeURIComponent(getItemFromURL())}`, {
-                    method: "POST",
-                    body: datos
-                });
+        // Formatua ez bada egokia, ezer ez egin
+        if (!datuakegiaztatu(kostua, bizitza, erasoa, mota)) {
+            return;
+        }
 
-                const result = await response.json();
+        try {
+            const datos = new FormData(form);
+            const response = await fetch(`../config/modify_item.php?item=${encodeURIComponent(getItemFromURL())}`, {
+                method: "POST",
+                body: datos
+            });
 
-                mensajeDiv.style.padding = "10px";
-                mensajeDiv.style.borderRadius = "8px";
-                mensajeDiv.style.textAlign = "center";
-                mensajeDiv.style.fontWeight = "bold";
-                mensajeDiv.style.width = "fit-content";
-                mensajeDiv.style.margin = "20px auto";
-                mensajeDiv.style.backgroundColor = result.success ? "#c8f7c5" : "#f7c5c5";
-                mensajeDiv.style.color = result.success ? "#2e7d32" : "#7d2e2e";
-                mensajeDiv.textContent = result.message;
+            const result = await response.json();
 
-            } catch (err) {
-                console.error("Error:", err);
-                mensajeDiv.style.backgroundColor = "#f7c5c5";
-                mensajeDiv.style.color = "#7d2e2e";
-                mensajeDiv.textContent = "Errorea datuak bidaltzean.";
+            if (result.success) {
+                // Ondo badago
+                mezuaDiv.textContent = result.message;
+                mezuaDiv.className = "zuzena-mezua";
+
+                setTimeout(() => {
+                    window.location.href = `../show_item/?item=${encodeURIComponent(getItemFromURL())}`;
+                }, 2000);
+            } else {
+                // Errorea badago
+                mezuaDiv.textContent = "Errorea: " + result.message;
+                mezuaDiv.className = "errore-mezua";
             }
+        } catch (err) {
+            console.error("Errorea:", err);
+            mezuaDiv.textContent = "Errorea: ezin izan da datuak bidali.";
+            mezuaDiv.className = "errore-mezua";
         }
     });
 
+    // Atzera botoia
     const atzeraLink = document.getElementById("atzera_modify_item");
     if (atzeraLink) {
         atzeraLink.addEventListener("click", (e) => {
@@ -111,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Kartaren datuak kargatu
     const item = getItemFromURL();
     loadItem(item);
 });

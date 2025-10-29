@@ -1,6 +1,6 @@
 <?php
-// HTML lerroak itzultzen ditu kartetarako, Izena eta Mota zutabeekin.
 ob_start();
+
 $included = false;
 if (function_exists('mysqli_connect')) {
     @include __DIR__ . '/../index.php';
@@ -8,25 +8,26 @@ if (function_exists('mysqli_connect')) {
 }
 ob_end_clean();
 
-// mysqli_connect funtzioa erabilgarri dagoen eta $conn aldagaia ezarri den eta balioa duen egiaztatzen du.
-if (!function_exists('mysqli_connect') || !$included || !isset($conn) || !$conn) {
+// DB konexioaren egiaztapena
+if (!$included || !isset($conn) || !$conn) {
     echo "<tr><td colspan='3' style='text-align:center;color:var(--danger);padding:1rem;'>Errorea: ezin izan da datu basera konektatu.</td></tr>";
     exit;
 }
 
+// SQL kontsulta zuzenean parametroekin
 $sql = "SELECT izena, mota FROM Datuak ORDER BY izena ASC";
 $result = $conn->query($sql);
 
 if (!$result) {
-    echo "<tr><td colspan='3' style='text-align:center;color:var(--danger);padding:1rem;'>Kontsulta errorea: " . htmlspecialchars($conn->error) . "</td></tr>";
+    echo "<tr><td colspan='3' style='text-align:center;color:var(--danger);padding:1rem;'>Kontsulta errorea: " . $conn->error . "</td></tr>";
     $conn->close();
     exit;
 }
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $izena = htmlspecialchars($row['izena']);
-        $mota = htmlspecialchars($row['mota']);
+        $izena = $row['izena'];
+        $mota = $row['mota'];
         $showUrl   = '/show_item?item=' . rawurlencode((string)$izena);
         $deleteUrl = '/delete_item?item=' . rawurlencode((string)$izena);
 

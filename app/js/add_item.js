@@ -1,3 +1,4 @@
+// Datuen formatua egiaztatzen du
 function datuakegiaztatu(pIzena, pKostua, pBizitza, pErasoa, pMota) {
     let erroreak = [];
 
@@ -15,22 +16,23 @@ function datuakegiaztatu(pIzena, pKostua, pBizitza, pErasoa, pMota) {
     }
 }
 
+// Funtzio laguntzaileak formatua egiaztatzeko
 function validText(text) {
     return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(text);
 }
-
 function validNumber(number) {
     return /^\d+$/.test(number);
 }  
-
 function validKostua(kostua) {
     return /^[1-9]$/.test(kostua);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("item_add_form");
+    const mezuaDiv = document.getElementById("mezua");
 
-    form.addEventListener("submit", (e) => {
+    // Formularioa bidaltzean
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const izena = document.getElementById("izena").value;
@@ -39,8 +41,41 @@ document.addEventListener("DOMContentLoaded", () => {
         const erasoa = document.getElementById("erasoa").value;
         const mota = document.getElementById("mota").value;
 
-        if (datuakegiaztatu(izena, kostua, bizitza, erasoa, mota)) {
-            form.submit();
+        // Formatua ez bada egokia, ezer ez egin
+        if (!datuakegiaztatu(izena, kostua, bizitza, erasoa, mota)) {
+            return;
+        }
+
+        const datuak = new FormData(form);
+
+        try {
+            // Datuak bidali datu-basera
+            const response = await fetch("../config/add_item.php", {
+                method: "POST",
+                body: datuak,
+            });
+
+            const result = await response.text();
+
+            if (response.ok) {
+                // Ondo badago
+                mezuaDiv.textContent = "Elementua ondo gehitu da!";
+                mezuaDiv.className = "zuzena-mezua";
+                
+                // Bueltatu hasierako orrira
+                setTimeout(() => {
+                window.location.href = "../";
+                }, 2000);
+            } else {
+                // Errorea badago
+                mezuaDiv.textContent = "Errorea: " + result;
+                mezuaDiv.className = "errore-mezua";
+            }
+        } catch (error) {
+            // Bestelako erroreak badaude
+            console.error("Errorea:", error);
+            mezuaDiv.textContent = "Errorea: ezin izan da zerbitzariarekin konektatu.";
+            mezuaDiv.className = "errore-mezua";
         }
     });
 });

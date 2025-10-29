@@ -1,26 +1,37 @@
 <?php
-include("../index.php");
 header('Content-Type: application/json; charset=utf-8');
+ob_start();
 
+$included = false;
+if (function_exists('mysqli_connect')) {
+    @include __DIR__ . '/../index.php';
+    $included = true;
+}
+ob_end_clean();
+
+// DB konexioaren egiaztapena
+if (!$included) {
+    echo json_encode(['success' => false, 'message' => 'Errorea datu basearekin konektatzean.']);
+    exit;
+}
+// Item izena lortu
 if (isset($_GET['item'])) {
-    $item = $_GET['item'];
-    $item_izena = urldecode($item);
-    $item_izena = htmlspecialchars($item_izena);
+    $item_izena = urldecode($_GET['item']);
 } else {
-    echo "No se ha especificado ningún item.";
+    echo json_encode(['success' => false, 'message' => 'Ez da itemik zehaztu.']);
+    exit;
 }
 
-$stmt = $conn->prepare("UPDATE Datuak 
-                        SET kostua=?, bizitza=?, erasoa=?, mota=?
-                        WHERE izena=?");
+// SQL kontsulta egin parametroekin
+$sql = "UPDATE Datuak 
+        SET kostua={$_POST['kostua']}, bizitza={$_POST['bizitza']}, erasoa={$_POST['erasoa']}, mota='{$_POST['mota']}'
+        WHERE izena='$item_izena'";
 
-$stmt->bind_param("iiiss", $_POST['kostua'], $_POST['bizitza'], $_POST['erasoa'], $_POST['mota'], $item_izena);
-
-if ($stmt->execute()) {
+if (mysqli_query($conn, $sql)) {
     echo json_encode(["success" => true, "message" => "Karta eguneratu da."]);
-
 } else {
-    echo json_encode(["success" => false, "message" => "Errorea: " . $stmt->error]);
+    echo json_encode(["success" => false, "message" => "Errorea: " . mysqli_error($conn)]);
 }
+
 mysqli_close($conn);
 ?>

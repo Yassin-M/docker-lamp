@@ -1,93 +1,45 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("register_form");
-  const mensajeDiv = document.createElement("div");
-  mensajeDiv.style.marginTop = "20px";
-  form.after(mensajeDiv);
+// Datuen formatua egiaztatu
+function datuakegiaztatu(izena, nan, zenbakia, email) {
+  let errorea = false;
+  let mezuak = [];
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  // Aurreko erroreak garbitu
+  document.getElementById("error-izena").textContent = "";
+  document.getElementById("error-nan").textContent = "";
+  document.getElementById("error-zenbaki").textContent = "";
+  document.getElementById("error-email").textContent = "";
 
-    document.querySelectorAll(".error").forEach(el => el.textContent = "");
+  if (!validText(izena)) {
+    mezuak.push("Izena ez da baliozkoa (Ezin dituzu zenbakiak ipini).");
+  }
+  if (izena.length > 15) {
+    mezuak.push("Izen luzeegia duzu (15 karaktere gehienez ipin daitezke).");
+  }
+  if (mezuak.length > 0) {
+    document.getElementById("error-izena").textContent = mezuak.join(" ");
+    errorea = true;
+  }
+  if (!validDni(nan)) {
+    document.getElementById("error-nan").textContent = "NAN-a ez da baliozkoa (Gogoratu: NAN batek 8 zenbaki eta letra 1 ditu eta letra baliozkoa izan behar da).";
+    errorea = true;
+  }
+  if (!validZenbakia(zenbakia)) {
+    document.getElementById("error-zenbaki").textContent = "Zenbakia ez da baliozkoa (Gogoratu: telefono zenbaki batek 9 digitu izan behar ditu).";
+    errorea = true;
+  }
+  if (!validEmail(email)) {
+    document.getElementById("error-email").textContent = "email-a ez da baliozkoa (izena@domeinua.com).";
+    errorea = true;
+  }
 
-    const nombreCompleto = document.getElementById("izena").value;
-    const dni = document.getElementById("nan").value;
-    const telefono = document.getElementById("zenbakia").value;
-    const email = document.getElementById("email").value;
+  if (errorea) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
-    let errorea = false;
-    let mezuak = [];
-
-    if (!validText(nombreCompleto)) {
-      mezuak.push("Izena ez da baliozkoa (Ezin dituzu zenbakiak ipini).");
-    }
-
-    if (nombreCompleto.length > 15) {
-      mezuak.push("Izen luzeegia duzu (15 karaktere gehienez ipin daitezke).");
-    }
-
-    if (mezuak.length > 0) {
-      document.getElementById("error-izena").textContent = mezuak.join(" ");
-      errorea = true;
-    }
-
-    if (!validDni(dni)){
-      document.getElementById("error-nan").textContent = "NAN-a ez da baliozkoa (Gogoratu: NAN batek 8 zenbaki eta letra 1 ditu eta letra baliozkoa izan behar da).";
-      errorea = true;
-    } 
-    if (!validZenbakia(telefono)){
-      document.getElementById("error-zenbaki").textContent = "Zenbakia ez da baliozkoa (Gogoratu: telefono zenbaki bat gehienez 9 digitu izan behar ditu).";
-      errorea = true;
-    } 
-    if (!validEmail(email)){
-      document.getElementById("error-email").textContent = "email-a ez da baliozkoa (izena@domeinua.com).";
-      errorea = true;
-    } 
-
-    if (errorea) {
-      return;
-    }
-
-    const datos = new FormData(form);
-
-    try {
-      const response = await fetch("../config/register.php", {
-        method: "POST",
-        body: datos,
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        mensajeDiv.textContent = "Erregistroa burutu da!";
-        mensajeDiv.style.backgroundColor = "#c8f7c5";
-        mensajeDiv.style.color = "#2e7d32";
-        mensajeDiv.style.padding = "10px";
-        mensajeDiv.style.borderRadius = "8px";
-        mensajeDiv.style.textAlign = "center";
-
-        setTimeout(() => {
-          window.location.href = "../";
-        }, 2000);
-      } else {
-        mensajeDiv.textContent = "Errorea: " + result.message;
-        mensajeDiv.style.backgroundColor = "#f8d7da";
-        mensajeDiv.style.color = "#842029";
-        mensajeDiv.style.padding = "10px";
-        mensajeDiv.style.borderRadius = "8px";
-        mensajeDiv.style.textAlign = "center";
-      }
-    } catch (error) {
-      console.error("Error en el registro:", error);
-      mensajeDiv.textContent = "Errorea: ezin izan da zerbitzariarekin konektatu.";
-      mensajeDiv.style.backgroundColor = "#f8d7da";
-      mensajeDiv.style.color = "#842029";
-      mensajeDiv.style.padding = "10px";
-      mensajeDiv.style.borderRadius = "8px";
-      mensajeDiv.style.textAlign = "center";
-    }
-  });
-});
-
+// Funtzio laguntzaileak formatua egiaztatzeko
 function validDni(dni) {
   if (!/^\d{8}[A-Za-z]$/.test(dni)) return false;
   const letras = "TRWAGMYFPDXBNJZSQVHLCKE";
@@ -95,15 +47,64 @@ function validDni(dni) {
   const letra = dni[8].toUpperCase();
   return letras[numero % 23] === letra;
 }
-
 function validEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
 function validText(text) {
   return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(text);
 }
-
 function validZenbakia(zenbakia) {
   return /^\d{9}$/.test(zenbakia);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("register_form");
+  const mezuaDiv = document.getElementById("mezua");
+
+  // Formularioa bidaltzean
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const izena = document.getElementById("izena").value;
+    const nan = document.getElementById("nan").value;
+    const zenbakia = document.getElementById("zenbakia").value;
+    const email = document.getElementById("email").value;
+
+    // Formatua ez bada egokia, ezer ez egin
+    if (!datuakegiaztatu(izena, nan, zenbakia, email)) {
+      return;
+    }
+
+    const datuak = new FormData(form);
+
+    try {
+      // Datuak bidali datu-basera
+      const response = await fetch("../config/register.php", {
+        method: "POST",
+        body: datuak,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Ondo badago
+        mezuaDiv.textContent = "Erregistroa burutu da!";
+        mezuaDiv.className = "zuzena-mezua";
+
+        // Bueltatu hasierako orrira
+        setTimeout(() => {
+          window.location.href = "../";
+        }, 2000);
+      } else {
+        // Errorea badago
+        mezuaDiv.textContent = "Errorea: " + result.message;
+        mezuaDiv.className = "errore-mezua";
+      }
+    } catch (error) {
+      // Bestelako erroreak badaude
+      console.error("Errorea:", error);
+      mezuaDiv.textContent = "Errorea: ezin izan da zerbitzariarekin konektatu.";
+      mezuaDiv.className = "errore-mezua";
+    }
+  });
+});

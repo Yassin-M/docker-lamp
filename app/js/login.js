@@ -1,53 +1,50 @@
-const form = document.getElementById("login_form");
-const mensajeDiv = document.createElement("div");
-mensajeDiv.style.marginTop = "20px";
-form.after(mensajeDiv);
+document.addEventListener("DOMContentLoaded", () => {
+    // HTML-tik elementuak hartu
+    const form = document.getElementById("login_form");
+    const mezuaDiv = document.getElementById("mezua");
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // Datuak bidaltzean:
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const datos = new FormData(form);
+        const datuak = new FormData(form);
 
-    const response = await fetch("../config/login.php", {
-        method: "POST",
-        body: datos
+        try {
+            // Login eskaera bidali
+            const response = await fetch("../config/login.php", {
+                method: "POST",
+                body: datuak,
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                sessionStorage.setItem("userNAN", result.nan);   // NAN-a sessionStorage-an gorde
+                mezuaDiv.textContent = "Saioa hasita!";
+                mezuaDiv.className = "zuzena-mezua";
+
+                // Bueltatu hasierako orrira
+                setTimeout(() => {
+                window.location.href = "../";
+                }, 2000);
+            } else {
+                // Login-a ez bada zuzena
+                mezuaDiv.textContent = "Errorea: " + result.message;
+                mezuaDiv.className = "errore-mezua";
+
+                // NAN-a ezabatu
+                try {
+                    localStorage.removeItem("userNAN");
+                    sessionStorage.removeItem("userNAN");
+                } catch (e) {
+                    console.error("Errorea NAN-a ezabatzean:", e);
+                }
+            }
+        } catch (error) {
+            // Sareko erroreak edo bestelakoak
+            console.error("Errorea:", error);
+            mezuaDiv.textContent = "Errorea: ezin izan da zerbitzariarekin konektatu.";
+            mezuaDiv.className = "errore-mezua";
+        }
     });
-
-    const result = await response.json();
-
-     if(result.success){
-                // NAN-a sessionStorage-an gorde
-                sessionStorage.setItem("userNAN", result.nan);
-                // Erakutsi NAN-a interfazean
-                const sessionEl = document.getElementById('saioa_hasita');
-                if(sessionEl){
-                    sessionEl.textContent = 'NAN: ' + result.nan;
-                    sessionEl.classList.add('session-logged');
-                }
-        mensajeDiv.textContent = "Saioa hasita!";
-        mensajeDiv.style.backgroundColor = "#c8f7c5";
-        mensajeDiv.style.color = "#2e7d32";
-        mensajeDiv.style.padding = "10px";
-        mensajeDiv.style.borderRadius = "8px";
-        mensajeDiv.style.textAlign = "center";
-        mensajeDiv.style.marginTop = "10px";
-    } else {
-                mensajeDiv.textContent = "Error: " + result.message;
-                // login-a huts egin badu, ezabatu NAN-a
-                try{
-                    localStorage.removeItem('userNAN');
-                    sessionStorage.removeItem('userNAN');
-                } catch(e){ /* ignore */ }
-                const sessionEl = document.getElementById('saioa_hasita');
-                if(sessionEl){
-                    sessionEl.textContent = '';
-                    sessionEl.classList.remove('session-logged');
-                }
-        mensajeDiv.style.backgroundColor = "#f8d7da";
-        mensajeDiv.style.color = "#842029";
-        mensajeDiv.style.padding = "10px";
-        mensajeDiv.style.borderRadius = "8px";
-        mensajeDiv.style.textAlign = "center";
-        mensajeDiv.style.marginTop = "10px";
-    }
 });

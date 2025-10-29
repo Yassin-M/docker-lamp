@@ -1,15 +1,43 @@
+// Datuen formatua egiaztatzen du
+function datuakegiaztatu(izena, email, telefonoa) {
+  let erroreak = [];
+
+  if (!validText(izena)) {
+    erroreak.push("Izena ez da baliozkoa (Hizkiak bakarrik onartzen dira).");
+  }
+  if (izena.length > 15) {
+    erroreak.push("Izen luzeegia duzu (15 karaktere gehienez ipin daitezke).");
+  }
+  if (!validEmail(email)) {
+    erroreak.push("Email-a ez da baliozkoa (izena@domeinua.com).");
+  }
+  if (!validZenbakia(telefonoa)) {
+    erroreak.push("Zenbakia ez da baliozkoa (9 digitu izan behar ditu).");
+  }
+
+  if (erroreak.length > 0) {
+    return erroreak;
+  } else {
+    return null;
+  }
+}
+
+// Funtzio laguntzaileak formatua egiaztatzeko
 function validEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
 function validText(text) {
   return /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(text);
 }
-
 function validZenbakia(zenbakia) {
   return /^\d{9}$/.test(zenbakia);
 }
-window.addEventListener("DOMContentLoaded", async () => {
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const form = document.getElementById("user_modify_form");
+  const mezuaDiv = document.getElementById("mezua");
+
+  // Erabiltzailearen datuak kargatu eta datuak bete
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const nan = urlParams.get("user");
@@ -17,12 +45,12 @@ window.addEventListener("DOMContentLoaded", async () => {
     const url = nan ? `../config/show_user.php?user=${encodeURIComponent(nan)}` : `../config/show_user.php`;
 
     const response = await fetch(url, { credentials: 'same-origin' });
-    if (!response.ok) throw new Error("Error al obtener datos: HTTP " + response.status);
+    if (!response.ok) throw new Error("Errorea datuak lortzean: HTTP " + response.status);
 
     const data = await response.json();
-    
-    if (!data.success) throw new Error(data.message || 'No se obtuvo usuario');
+    if (!data.success) throw new Error(data.message || 'Ezin izan da erabiltzailea lortu');
 
+    // Formularioa datuekin bete
     document.getElementById("user-id").value = data.id || "--";
     document.getElementById("user-name").value = data.nombre || "--";
     document.getElementById("user-email").value = data.email || "--";
@@ -33,64 +61,55 @@ window.addEventListener("DOMContentLoaded", async () => {
     alert("Ezin izan da erabiltzailearen datuak kargatu: " + (err.message || err));
   }
 
-  const form = document.getElementById("user_modify_form");
-
-  const mensajeDiv = document.createElement("div");
-  mensajeDiv.style.marginTop = "20px";
-  form.after(mensajeDiv);
-
+  // Formularioa bidaltzean
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const datos = new FormData(form);
+    const izena = datos.get("izena");
+    const email = datos.get("email");
+    const telefonoa = datos.get("telefonoa");
 
-    if (validText(datos.get("izena")) && validEmail(datos.get("email")) && validZenbakia(datos.get("telefonoa")) && datos.get("izena").length <= 15) {
-      try {
-        const response = await fetch("../config/modify_user.php", {
-          method: "POST",
-          body: datos
-        }); 
+    // Balioak egiaztatu
+    const erroreak = datuakegiaztatu(izena, email, telefonoa);
+    if (erroreak) {
+      mezuaDiv.textContent = "Erroreak:" + erroreak.join(" - ");
+      mezuaDiv.className = "errore-mezua";
+      return;
+    }
+
+    // Datuak bidali
+    try {
+      const response = await fetch("../config/modify_user.php", {
+        method: "POST",
+        body: datos
+      });
+
       const result = await response.json();
 
-      mensajeDiv.style.padding = "10px";
-      mensajeDiv.style.borderRadius = "8px";
-      mensajeDiv.style.textAlign = "center";
-      mensajeDiv.style.fontWeight = "bold";
-      mensajeDiv.style.width = "fit-content";
-      mensajeDiv.style.margin = "20px auto";
-      mensajeDiv.style.backgroundColor = result.success ? "#c8f7c5" : "#f7c5c5";
-      mensajeDiv.style.color = result.success ? "#2e7d32" : "#7d2e2e";
-      mensajeDiv.textContent = result.message;
+      if (result.success) {
+        // Zuzena bada
+        mezuaDiv.textContent = result.message;
+        mezuaDiv.className = "zuzena-mezua";
 
-      } catch (err) {
-        console.error("Error:", err);
-        mensajeDiv.style.backgroundColor = "#f7c5c5";
-        mensajeDiv.style.color = "#7d2e2e";
-        mensajeDiv.textContent = "Errorea datuak bidaltzean.";
+        setTimeout(() => {
+          const nan = new URLSearchParams(window.location.search).get("user");
+          window.location.href = `../show_user/?user=${encodeURIComponent(nan)}`;
+        }, 2000);
+      } else {
+        // Errorea badago
+        mezuaDiv.textContent = "Errorea: " + result.message;
+        mezuaDiv.className = "errore-mezua";
       }
-    } else {
-      const izenaVal = datos.get("izena");
-      const emailVal = datos.get("email");
-      const telefonoVal = datos.get("telefonoa");
-
-      const failed = [];
-      if (!validText(izenaVal)) failed.push(`Mesedez, sartu baliozko izen bat`);
-      if (!validEmail(emailVal)) failed.push(`Mesedez, sartu baliozko email bat`);
-      if (!validZenbakia(telefonoVal)) failed.push(`Mesedez, sartu baliozko telefonoa`);
-      if (izenaVal.length > 15) failed.push("Mesedez, sartu izen labur bat (15 karaktere gehienez)");
-
-      mensajeDiv.style.padding = "10px";
-      mensajeDiv.style.borderRadius = "8px";
-      mensajeDiv.style.textAlign = "center";
-      mensajeDiv.style.fontWeight = "bold";
-      mensajeDiv.style.width = "fit-content";
-      mensajeDiv.style.margin = "20px auto";
-      mensajeDiv.style.backgroundColor = "#f7c5c5";
-      mensajeDiv.style.color = "#7d2e2e";
-      mensajeDiv.textContent = "Erroreak: " + (failed.length ? failed.join(" ; ") : "Balioak ok.");
-     }
+    } catch (err) {
+      // Bestelako erroreak badaude
+      console.error("Errorea:", err);
+      mezuaDiv.textContent = "Errorea: ezin izan da datuak bidali.";
+      mezuaDiv.className = "errore-mezua";
+    }
   });
 
+  // Atzera botoia
   const atzeraLink = document.getElementById("atzera_modify_user");
   if (atzeraLink) {
     atzeraLink.addEventListener("click", (e) => {

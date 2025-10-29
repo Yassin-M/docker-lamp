@@ -214,7 +214,6 @@ table td:nth-child(3){ width: 16%; }  /* Bizitza */
 table td:nth-child(4){ width: 16%; }  /* Erasoa */
 table td:nth-child(5){ width: 16%; }  /* Mota */
 
-/* Cost/pill and category badge */
 .pill{
   display: inline-block;
   padding: 0.25rem 0.55rem;
@@ -262,7 +261,7 @@ table td:nth-child(5){ width: 16%; }  /* Mota */
   color: var(--danger);
 }
 
-/* Small screens: allow horizontal scroll and reduce paddings */
+/* Pantaila txikietan */
 @media (max-width: 720px){
   table{ min-width: 400px; }
   table thead th, table tbody td{ padding: 0.6rem 0.7rem; }
@@ -274,17 +273,16 @@ table td:nth-child(5){ width: 16%; }  /* Mota */
   .btn{ padding: 0.5rem 0.7rem; font-size: 0.9rem; }
 }
 
-/* Session badge (NAN) shown when user is logged in - pinned to the extreme top-right */
+/* NAN-a gehitu pantailan saioa hasita badago */
 #saioa_hasita.session-logged{
   position: fixed;
-  right: 0; /* flush to the right edge */
-  top: 0;   /* flush to the top edge */
+  right: 0;
+  top: 0;
   transform: translate(0, 0);
   background: linear-gradient(180deg,#ffffff,#f3f7ff);
   color: var(--accent);
   border: 1px solid rgba(43,123,228,0.12);
   padding: 0.5rem 0.9rem;
-  /* only round the bottom-left corner so the badge sits flush in the corner */
   border-radius: 0 0 0 8px;
   box-shadow: 0 8px 20px rgba(11,34,84,0.08);
   z-index: 9999;
@@ -307,3 +305,23 @@ table td:nth-child(5){ width: 16%; }  /* Mota */
   display: block;
   margin-top: 4px;
 }
+
+/* Errorea/zuzena mezuak */
+.zuzena-mezua {
+  background-color: #c8f7c5;
+  color: #2e7d32;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.errore-mezua {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+}
+

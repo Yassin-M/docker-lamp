@@ -21,16 +21,13 @@ if (!$conn) {
 }
 
 // Elementua ezabatu
-$sql = "DELETE FROM Datuak WHERE izena = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $item);
+$sql = "DELETE FROM Datuak WHERE izena = '$item'";
 
-if ($stmt->execute()) {
+if (mysqli_query($conn, $sql)) {
     echo json_encode(['success' => true]);
 } else {
     echo json_encode(['success' => false, 'error' => $conn->error]);
 }
 
-$stmt->close();
 $conn->close();
 ?>

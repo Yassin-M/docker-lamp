@@ -1,14 +1,27 @@
 <?php
-include("../index.php");
 header('Content-Type: application/json; charset=utf-8');
+ob_start();
+
+$included = false;
+if (function_exists('mysqli_connect')) {
+    @include __DIR__ . '/../index.php';
+    $included = true;
+}
+ob_end_clean();
+
+// DB konexioaren egiaztapena
+if (!$included) {
+    echo json_encode(['success' => false, 'message' => 'Errorea datu basearekin konektatzean.']);
+    exit;
+}
 
 // Formulariotik datuak jaso
-$izena = mysqli_real_escape_string($conn, $_POST['izena'] ?? '');
-$nan = mysqli_real_escape_string($conn, $_POST['nan'] ?? '');
-$zenbaki = mysqli_real_escape_string($conn, $_POST['zenbakia'] ?? '');
-$data = mysqli_real_escape_string($conn, $_POST['data'] ?? '');
-$email = mysqli_real_escape_string($conn, $_POST['email'] ?? '');
-$pasahitza = mysqli_real_escape_string($conn, $_POST['pasahitza'] ?? '');
+$izena = $_POST['izena'] ?? '';
+$nan = $_POST['nan'] ?? '';
+$zenbaki = $_POST['zenbakia'] ?? '';
+$data = $_POST['data'] ?? '';
+$email = $_POST['email'] ?? '';
+$pasahitza = $_POST['pasahitza'] ?? '';
 
 // Erabiltzailea edo NAN-a existitzen den egiaztatu
 $user_query = mysqli_query($conn, "SELECT * FROM Erabiltzailea WHERE email='$email' OR nan='$nan'");
