@@ -10,8 +10,8 @@
 * [Konfigurazioa](#konfigurazioa)
 * [Erabilera](#erabilera)
 * [Proiektuaren egoera](#proiektuaren-egoera)
-* [Hobekuntza posibleak](#hobekuntza-posibleak)
-* [Esker onak](#esker-onak)
+<!--* [Hobekuntza posibleak](#hobekuntza-posibleak)
+* [Esker onak](#esker-onak)-->
 
 ## Partaideak
 
@@ -42,7 +42,7 @@ Hona hemen gure aplikazioaren ezaugarri nagusiak:
 
 
 ## Pantaila-argazkiak
-!(.irudiak/Web_irudia.png)
+![](./.irudiak/Web_irudia.png)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
@@ -50,7 +50,7 @@ Hona hemen gure aplikazioaren ezaugarri nagusiak:
 Web Sistema honek, **Docker 28.4.0**, **Docker Compose 2.39.2** eta **Ubuntu 24.04.2 LTS** dituen sistema eragile batean behar bezala zuzen funtzionatzeko diseinatuta dago, beraz gomendagarria da instalatuta eukitzea.
 
 ## Erabilera
-- Sistema hau zure ordenagailuan behar den moduan funtzionarazteko, lehenik eta behin web irudia eraiki behar duzu:
+- Sistema hau zure ordenagailuan behar den moduan funtzionarazteko, lehenik eta behin _**web**_ irudia eraiki behar duzu:
   ```bash
     docker build -t="web" .
   ```
@@ -68,7 +68,7 @@ Web Sistema honek, **Docker 28.4.0**, **Docker Compose 2.39.2** eta **Ubuntu 24.
 ## Proiektuaren egoera
 Proiektua _garapenean_ dago. Oraindik ez dago amaituta
 
-
+<!--
 ## Hobekuntza posibleak
 Include areas you believe need improvement / could be improved. Also add TODOs for future development.
 
@@ -86,3 +86,4 @@ Give credit here.
 - This project was inspired by...
 - This project was based on [this tutorial](https://www.example.com).
 - Many thanks to...
+-->
