@@ -51,9 +51,13 @@ Web Sistema honek, **Docker 28.4.0**, **Docker Compose 2.39.2** eta **Ubuntu 24.
 
 ## Erabilera
 - Sistema hau zure ordenagailuan behar den moduan funtzionarazteko, lehenik eta behin web irudia eraiki behar duzu:
-  `docker build -t="web" .`
+  ```bash
+    docker build -t="web" .
+  ```
 - Gero, sistemaren kontainerrak martxan jarri:
-  `docker-compose up -d`
+  ```bash
+    docker-compose up -d
+  ``
 -Ondoren, datu-basea inportatu, horretarako:
   - [phpMyAdmin](http://localhost:8890/) web orrialdera sartu.
   - **admin** erabiltzailea eta **test** pasahitza erabili saioa hasteko.
