@@ -47,16 +47,18 @@ Hona hemen gure aplikazioaren ezaugarri nagusiak:
 
 
 ## Konfigurazioa
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
-
+Web Sistema honek, **Docker 28.4.0**, **Docker Compose 2.39.2** eta **Ubuntu 24.04.2 LTS** dituen sistema eragile batean behar bezala zuzen funtzionatzeko diseinatuta dago, beraz gomendagarria da instalatuta eukitzea.
 
 ## Erabilera
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
+- Sistema hau zure ordenagailuan behar den moduan funtzionarazteko, lehenik eta behin web irudia eraiki behar duzu:
+  `docker build -t="web" .`
+- Gero, sistemaren kontainerrak martxan jarri:
+  `docker-compose up -d`
+-Ondoren, datu-basea inportatu, horretarako:
+  - [phpMyAdmin](http://localhost:8890/) web orrialdera sartu.
+  - **admin** erabiltzailea eta **test** pasahitza erabili saioa hasteko.
+  - **Importar** botoiari eman, ondoren **Examinar** eta azkenik proiektuaren direktorioaren dagoen **database.sql** fitxategia hautatu.
+- Azkenik, [Web Orrialde](http://localhost:81/) -ra nabigatu eta sistema erabili.
 
 
 ## Proiektuaren egoera
