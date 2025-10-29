@@ -15,12 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("email").value;
 
     const errores = [];
-    if (!validText(nombreCompleto) || nombreCompleto.length>15){
-      document.getElementById("error-izena").textContent = "Izen luzeegia duzu (15 karaktere gehienez ipin daitezke).";
-      errores.push("Izena ez da baliozkoa");
-    } 
+    let mezuak = [];
+
+    if (!validText(nombreCompleto)) {
+      mezuak.push("Izena ez da baliozkoa (Ezin dituzu zenbakiak ipini).");
+    }
+
+    if (nombreCompleto.length > 15) {
+      mezuak.push("Izen luzeegia duzu (15 karaktere gehienez ipin daitezke).");
+    }
+
+    if (mensajes.length > 0) {
+      document.getElementById("error-izena").textContent = mezuak.join(" ");
+    }
+
     if (!validDni(dni)){
-      document.getElementById("error-nan").textContent = "NAN-a ez da baliozkoa (8 zenbaki eta letra 1).";
+      document.getElementById("error-nan").textContent = "NAN-a ez da baliozkoa (Gogoratu: NAN batek 8 zenbaki eta letra 1 ditu eta letra baliozkoa izan behar da).";
       errores.push("NAN-a ez da baliozkoa");
     } 
     if (!validZenbakia(telefono)){
