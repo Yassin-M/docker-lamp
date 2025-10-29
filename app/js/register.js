@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const telefono = document.getElementById("zenbakia").value;
     const email = document.getElementById("email").value;
 
-    const errores = [];
+    let errorea = false;
     let mezuak = [];
 
     if (!validText(nombreCompleto)) {
@@ -27,22 +27,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (mezuak.length > 0) {
       document.getElementById("error-izena").textContent = mezuak.join(" ");
+      errorea = true;
     }
 
     if (!validDni(dni)){
       document.getElementById("error-nan").textContent = "NAN-a ez da baliozkoa (Gogoratu: NAN batek 8 zenbaki eta letra 1 ditu eta letra baliozkoa izan behar da).";
-      errores.push("NAN-a ez da baliozkoa");
+      errorea = true;
     } 
     if (!validZenbakia(telefono)){
       document.getElementById("error-zenbaki").textContent = "Zenbakia ez da baliozkoa (Gogoratu: telefono zenbaki bat gehienez 9 digitu izan behar ditu).";
-      errores.push("Zenbakia 9 digitu izan behar ditu");
+      errorea = true;
     } 
     if (!validEmail(email)){
       document.getElementById("error-email").textContent = "email-a ez da baliozkoa (izena@domeinua.com).";
-      errores.push("emaila ez da baliozkoa");
+      errorea = true;
     } 
 
-    if (errores.length > 0) {
+    if (errorea) {
       return;
     }
 
