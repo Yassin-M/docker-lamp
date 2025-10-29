@@ -43,10 +43,10 @@ async function loadItem(itemName) {
         const data = await res.json();
         if (!data.success) throw new Error(data.message || 'Itema ezin izan da kargatu');
 
-        // Actualizar el título del formulario
+        // Titulua aldatu
         title.textContent = `KARTA EDITATU - ${itemName}`;
 
-        // Rellenar los campos del formulario con los datos del ítem
+        // Formularioaren sarrerak datuekin bete
         document.getElementById("kostua").value = data.kostua || '';
         document.getElementById("bizitza").value = data.bizitza || '';
         document.getElementById("erasoa").value = data.erasoa || '';
@@ -58,7 +58,6 @@ async function loadItem(itemName) {
     }
 }
 
-// Asociar la función al submit del formulario
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("item_modify_form");
 

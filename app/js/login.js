@@ -16,9 +16,9 @@ form.addEventListener("submit", async (e) => {
     const result = await response.json();
 
      if(result.success){
-                // Guardar NAN en storage
+                // NAN-a sessionStorage-an gorde
                 sessionStorage.setItem("userNAN", result.nan);
-                // Mostrar inmediatamente en la cabecera (badge)
+                // Erakutsi NAN-a interfazean
                 const sessionEl = document.getElementById('saioa_hasita');
                 if(sessionEl){
                     sessionEl.textContent = 'NAN: ' + result.nan;
@@ -33,7 +33,7 @@ form.addEventListener("submit", async (e) => {
         mensajeDiv.style.marginTop = "10px";
     } else {
                 mensajeDiv.textContent = "Error: " + result.message;
-                // En caso de login fallido, borrar cualquier NAN guardado y limpiar la UI
+                // login-a huts egin badu, ezabatu NAN-a
                 try{
                     localStorage.removeItem('userNAN');
                     sessionStorage.removeItem('userNAN');

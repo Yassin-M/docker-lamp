@@ -1,8 +1,8 @@
 <?php
-include("../index.php"); // Conexión a la base de datos
+include("../index.php");
 header('Content-Type: application/json; charset=utf-8');
 
-// Recoger datos del formulario
+// Formulariotik datuak jaso
 $izena = mysqli_real_escape_string($conn, $_POST['izena'] ?? '');
 $nan = mysqli_real_escape_string($conn, $_POST['nan'] ?? '');
 $zenbaki = mysqli_real_escape_string($conn, $_POST['zenbakia'] ?? '');
@@ -10,7 +10,7 @@ $data = mysqli_real_escape_string($conn, $_POST['data'] ?? '');
 $email = mysqli_real_escape_string($conn, $_POST['email'] ?? '');
 $pasahitza = mysqli_real_escape_string($conn, $_POST['pasahitza'] ?? '');
 
-// Comprobar si el usuario ya está registrado
+// Erabiltzailea edo NAN-a existitzen den egiaztatu
 $user_query = mysqli_query($conn, "SELECT * FROM Erabiltzailea WHERE email='$email' OR nan='$nan'");
 
 if (mysqli_num_rows($user_query) > 0) {
@@ -23,7 +23,7 @@ if (mysqli_num_rows($user_query) > 0) {
     exit;
 }
 
-// Insertar nuevo usuario
+// Erabiltzailea datu-basean sartu
 $user_insert = mysqli_query($conn, "INSERT INTO Erabiltzailea (nan, izena, jaiotze_data, tlf, email, pasahitza) 
                                     VALUES ('$nan', '$izena', '$data', '$zenbaki', '$email', '$pasahitza')");
 

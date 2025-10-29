@@ -1,11 +1,7 @@
-// fetch_rows.js
-// Polling loader: fetch rows HTML from the PHP endpoint and inject into tbody.
-// Externalized so the logic is reusable and cacheable.
-
 (function () {
   const tbody = document.getElementById('users-tbody');
   const endpoint = '../config/items.php';
-  let polling = true; // set to false to pause
+  let polling = true;
   let intervalId = null;
 
   async function loadRows() {
@@ -31,7 +27,6 @@
     intervalId = null;
   }
 
-  // Pause polling when page is hidden
   document.addEventListener('visibilitychange', () => {
     polling = !document.hidden;
   });
@@ -41,6 +36,5 @@
     startPolling(5000);
   });
 
-  // Expose controls for debugging if needed
   window.__fetchRows = { startPolling, stopPolling, loadRows };
 })();

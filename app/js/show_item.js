@@ -16,10 +16,10 @@
       const res = await fetch(`${endpoint}?item=${encodeURIComponent(itemName)}`, { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
 
-      const data = await res.json(); // Cambiado para procesar JSON
+      const data = await res.json();
       if (!data.success) throw new Error(data.message || 'Errorea itema kargatzean.');
 
-      // Generar el HTML dinámicamente
+      // HTML taula sortu
       const rowHTML = `
         <tr>
           <td>${data.izena || ''}</td>

@@ -27,7 +27,6 @@ function validKostua(kostua) {
     return /^[1-9]$/.test(kostua);
 }
 
-// Asociar la función al submit del formulario
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("item_add_form");
 
