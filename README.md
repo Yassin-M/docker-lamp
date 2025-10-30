@@ -1,5 +1,5 @@
 # ISSKS Proiektua
-> Proiektu honetan datu base bat eta horri konektatuko den web aplikazio bat sortu dugu.
+Proiektu honetan datu base bat eta horri konektatuko den web aplikazio bat sortu dugu.
 
 ## Aurkibidea
 * [Partaideak](#partaideak)
@@ -10,8 +10,6 @@
 * [Konfigurazioa](#konfigurazioa)
 * [Erabilera](#erabilera)
 * [Proiektuaren egoera](#proiektuaren-egoera)
-<!--* [Hobekuntza posibleak](#hobekuntza-posibleak)
-* [Esker onak](#esker-onak)-->
 
 ## Partaideak
 
@@ -42,8 +40,19 @@ Hona hemen gure aplikazioaren ezaugarri nagusiak:
 
 
 ## Pantaila-argazkiak
-![](./.irudiak/Web_irudia.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+- Aplikazioaren pantaila nagusia:
+
+<img width="700" height="261" alt="Aplikazioaren pantaila nagusia" src="https://github.com/user-attachments/assets/953577c5-adf4-48ee-987e-9acae04e3a9e" />
+
+
+- Erregistratzeko orria (datuak ez badira baliozkoak, errore-mezuak agertuko dira)
+
+<img width="700" height="543" alt="Erregistratzeko orria" src="https://github.com/user-attachments/assets/e6b33fd2-6bdb-46fd-b400-46508d92cd8a" />
+
+
+- Datu-baseko kartak ikusteko orria:
+
+<img width="700" height="437" alt="Kartak ikusteko orria" src="https://github.com/user-attachments/assets/2fd0b021-c215-44d2-8ecd-0a5e3ab0b4ef" />
 
 
 ## Konfigurazioa
