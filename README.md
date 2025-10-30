@@ -21,7 +21,7 @@ Proiektu honetan datu base bat eta horri konektatuko den web aplikazio bat sortu
 - Asier Sinobas
 
 ## Informazio orokorra
-- Proiektu honetan datu base bat eta horri konektatuko den web aplikazio bat sortu dugu.
+Proiektu honetan Clash Royale-ko karten datu-base bat sortu dugu, eta datu horien eraldaketa ahalbidetzen duen web aplikazioa sortu dugu. Kartak gehitu, ezabatu, datuak ikusi eta aldatu daitezke. Beste alde batetik, erabiltzaileen erregistroa, saioa hastea eta norberaren datuen aldaketa ere egin daiteke, karten sistemarekiko independienteki.
 
 ## Erabilitako teknologia
 - mariadb - 10.8.2
@@ -31,12 +31,13 @@ Proiektu honetan datu base bat eta horri konektatuko den web aplikazio bat sortu
 
 ## Ezaugarriak
 Hona hemen gure aplikazioaren ezaugarri nagusiak:
-- Erabiltzaileen indentifikazio
+- Erabiltzaileen indentifikazioa
 - Erabiltzaileen erregistroa
-- Erabiltzailearen datuak aldatzea
-- Datuak gordetzea
-- Datuak ezabatzea
-- Datuak aldatzea
+- Erabiltzailearen datuak ikustea eta aldatzea
+- Karta berriak gehitzea
+- Kartak ikustea
+- Kartak ezabatzea
+- Karten datuak aldatzea
 
 
 ## Pantaila-argazkiak
@@ -77,26 +78,5 @@ Web Sistema honek, **Docker 28.4.0**, **Docker Compose 2.39.2** eta **Ubuntu 24.
     docker-compose stop
   ```
 
-
 ## Proiektuaren egoera
 Proiektua _garapenean_ dago. Oraindik ez dago amaituta
-
-<!--
-## Hobekuntza posibleak
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
-
-
-## Esker onak
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
--->
