@@ -29,7 +29,7 @@ $user_query = mysqli_query($conn, "SELECT * FROM Erabiltzailea WHERE email='$ema
 if (mysqli_num_rows($user_query) > 0) {
     echo json_encode([
         "success" => false,
-        "message" => "Erabiltzailea edo NAN-a dagoeneko erregistratuta dago."
+        "message" => "Erabiltzaile email-a edo NAN-a dagoeneko erregistratuta dago."
     ]);
     mysqli_free_result($user_query);
     mysqli_close($conn);

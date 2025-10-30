@@ -1,5 +1,5 @@
 // Datuen formatua egiaztatu
-function datuakegiaztatu(izena, nan, zenbakia, email) {
+function datuakegiaztatu(izena, nan, zenbakia, email, data) {
   let errorea = false;
   let mezuak = [];
 
@@ -8,6 +8,7 @@ function datuakegiaztatu(izena, nan, zenbakia, email) {
   document.getElementById("error-nan").textContent = "";
   document.getElementById("error-zenbaki").textContent = "";
   document.getElementById("error-email").textContent = "";
+  document.getElementById("error-data").textContent = "";
 
   if (!validText(izena)) {
     mezuak.push("Izena ez da baliozkoa (Ezin dituzu zenbakiak ipini).");
@@ -29,6 +30,10 @@ function datuakegiaztatu(izena, nan, zenbakia, email) {
   }
   if (!validEmail(email)) {
     document.getElementById("error-email").textContent = "email-a ez da baliozkoa (izena@domeinua.com).";
+    errorea = true;
+  }
+  if (!validDate(data)) {
+    document.getElementById("error-data").textContent = "Data ez da baliozkoa. UUUU-HH-EE formatua erabili eta data erreala sartu.";
     errorea = true;
   }
 
@@ -56,6 +61,18 @@ function validText(text) {
 function validZenbakia(zenbakia) {
   return /^\d{9}$/.test(zenbakia);
 }
+function validDate(data) {
+  const datePattern = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD
+  if (!datePattern.test(data)) return false;
+
+  const [year, month, day] = data.split("-").map(Number);
+  const date = new Date(year, month - 1, day); // Meses en JavaScript van de 0 a 11
+  return (
+    date.getFullYear() === year &&
+    date.getMonth() === month - 1 &&
+    date.getDate() === day
+  );
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("register_form");
@@ -69,9 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const nan = document.getElementById("nan").value;
     const zenbakia = document.getElementById("zenbakia").value;
     const email = document.getElementById("email").value;
+    const data = document.getElementById("data").value;
 
     // Formatua ez bada egokia, ezer ez egin
-    if (!datuakegiaztatu(izena, nan, zenbakia, email)) {
+    if (!datuakegiaztatu(izena, nan, zenbakia, email, data)) {
       return;
     }
 
