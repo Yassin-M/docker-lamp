@@ -1,4 +1,6 @@
 <?php
+include_once __DIR__ . '/csrf.php';
+
 header('Content-Type: application/json; charset=utf-8');
 ob_start();
 
@@ -10,7 +12,17 @@ if (function_exists('mysqli_connect')) {
 ob_end_clean();
 
 session_start();
-$_SESSION = [];
+
+// CSRF tokena egiaztatu
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+        echo json_encode([
+            "success" => false,
+            "message" => "CSRF tokena baliogabea."
+        ]);
+        exit;
+    }
+}
 
 // NAN eta pasahitza jaso
 $nan = $_POST['nan'] ?? '';

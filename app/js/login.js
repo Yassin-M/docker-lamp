@@ -1,7 +1,22 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     // HTML-tik elementuak hartu
     const form = document.getElementById("login_form");
+    const csrfInput = form.querySelector('input[name="csrf_token"]');
     const mezuaDiv = document.getElementById("mezua");
+
+    try {
+        // CSRF tokena eskuratu
+        const response = await fetch("../config/csrf.php");
+        const data = await response.json();
+
+        if (data.csrf_token) {
+            csrfInput.value = data.csrf_token; // CSRF tokena formularioan ezarri
+        } else {
+            console.error("CSRF tokena eskuratzea ezinezkoa izan da.");
+        }
+    } catch (error) {
+        console.error("Errorea CSRF tokena eskuratzean:", error);
+    }
 
     // Datuak bidaltzean:
     form.addEventListener("submit", async (e) => {
@@ -25,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Bueltatu hasierako orrira
                 setTimeout(() => {
-                window.location.href = "../";
+                    window.location.href = "../";
                 }, 2000);
             } else {
                 // Login-a ez bada zuzena
