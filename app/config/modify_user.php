@@ -16,15 +16,15 @@ if (!$included) {
 }
 
 // Erabiltzailea eguneratzeko SQL kontsulta
-$sql = "UPDATE Erabiltzailea 
-        SET izena='{$_POST['izena']}', email='{$_POST['email']}', jaiotze_data='{$_POST['dob']}', tlf='{$_POST['telefonoa']}'
-        WHERE nan='{$_POST['nan']}'";
+$stmt = mysqli_prepare($conn, "UPDATE Erabiltzailea SET izena=?, email=?, jaiotze_data=?, tlf=? WHERE nan=?");
+mysqli_stmt_bind_param($stmt, 'sssss', $_POST['izena'], $_POST['email'], $_POST['dob'], $_POST['telefonoa'], $_POST['nan']);
+$sql = mysqli_stmt_execute($stmt);
 
-if (mysqli_query($conn, $sql)) {
+if ($sql) {
     echo json_encode(["success" => true, "message" => "Erabiltzailea eguneratu da."]);
 } else {
     echo json_encode(["success" => false, "message" => "Errorea: " . mysqli_error($conn)]);
 }
-
+mysqli_stmt_close($stmt);
 mysqli_close($conn);
 ?>
