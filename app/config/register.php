@@ -37,8 +37,10 @@ if (mysqli_num_rows($user_query) > 0) {
 }
 
 // Erabiltzailea datu-basean sartu
-$user_insert = mysqli_query($conn, "INSERT INTO Erabiltzailea (nan, izena, jaiotze_data, tlf, email, pasahitza) 
-                                    VALUES ('$nan', '$izena', '$data', '$zenbaki', '$email', '$pasahitza')");
+$stmt = mysqli_prepare($conn, "INSERT INTO Erabiltzailea (nan, izena, jaiotze_data, tlf, email, pasahitza) 
+                            VALUES (?, ?, ?, ?, ?, ?)");
+mysqli_stmt_bind_param($stmt, 'ssssss', $nan, $izena, $data, $zenbaki, $email, $pasahitza);
+$user_insert = mysqli_stmt_execute($stmt);
 
 if ($user_insert) {
     echo json_encode([
@@ -53,5 +55,6 @@ if ($user_insert) {
     ]);
 }
 
+mysqli_stmt_close($stmt);
 mysqli_close($conn);
 ?>
