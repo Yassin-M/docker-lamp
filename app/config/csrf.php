@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+// Ensure security headers are present for direct requests to this script
+if (file_exists(__DIR__ . '/headers.php')) {
+    include_once __DIR__ . '/headers.php';
+}
+
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }

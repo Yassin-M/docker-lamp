@@ -1,1 +1,17 @@
 DirectoryIndex index.html index.php
+
+# Security headers: CSP and anti-clickjacking
+# Requires mod_headers enabled in Apache
+<IfModule mod_headers.c>
+	# Prevent the site from being framed
+	Header always set X-Frame-Options "DENY"
+	# Prevent content type sniffing
+	Header always set X-Content-Type-Options "nosniff"
+	# Basic referrer policy
+	Header always set Referrer-Policy "no-referrer-when-downgrade"
+	# A conservative Content-Security-Policy. Adjust if your app needs external hosts.
+	# Keep the header compact to avoid header-folding by Apache which can break CSP parsing.
+	# Minimal, compact CSP to avoid Apache header-folding issues while providing protection.
+	# Explicitly define directives that do not fall back to default-src (e.g. form-action, base-uri)
+	Header always set Content-Security-Policy "default-src 'self';script-src 'self';style-src 'self';img-src 'self' data:;frame-ancestors 'none';form-action 'self';base-uri 'self'"
+</IfModule>

@@ -1,0 +1,11 @@
+mysql
+mysql/**
+*.sql
+*.tar
+*.gz
+.git
+.git/**
+.venv
+venv
+node_modules
+__pycache__

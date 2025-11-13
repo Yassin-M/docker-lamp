@@ -1,4 +1,10 @@
 <?php
+  // Include centralized headers for PHP responses (anti-clickjacking, CSP, etc.).
+  // This file must be included before any output is sent.
+  if (file_exists(__DIR__ . '/config/headers.php')) {
+    include_once __DIR__ . '/config/headers.php';
+  }
+
   //echo '<h1>Yeah, it works!<h1>';
   // phpinfo();
   $hostname = "db";
