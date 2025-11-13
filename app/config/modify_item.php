@@ -9,11 +9,24 @@ if (function_exists('mysqli_connect')) {
 }
 ob_end_clean();
 
+// CSRF tokena egiaztatu
+include_once __DIR__ . '/csrf.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+        echo json_encode([
+            "success" => false,
+            "message" => "CSRF tokena baliogabea."
+        ]);
+        exit;
+    }
+}
+
 // DB konexioaren egiaztapena
 if (!$included) {
     echo json_encode(['success' => false, 'message' => 'Errorea datu basearekin konektatzean.']);
     exit;
 }
+
 // Item izena lortu
 if (isset($_GET['item'])) {
     $item_izena = urldecode($_GET['item']);

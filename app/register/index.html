@@ -11,6 +11,7 @@
             <div class="panel Formularioa" id="form_div">
                 <form action="../config/register.php" name="formularioa" id="register_form" method="POST">
                     <h1 style="text-align: center;">ERREGISTROA</h1>
+                    <input type="hidden" name="csrf_token">
                     <div>
                         <label for="izena">Izena</label>
                         <input type="text" name="izena" id="izena" placeholder="Zure izena-abizenak sartu (Adib.: Asier Siñobas)" required>

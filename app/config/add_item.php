@@ -9,6 +9,18 @@ if (function_exists('mysqli_connect')) {
 }
 ob_end_clean();
 
+// CSRF tokena egiaztatu
+include_once __DIR__ . '/csrf.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {
+        echo json_encode([
+            "success" => false,
+            "message" => "CSRF tokena baliogabea."
+        ]);
+        exit;
+    }
+}
+
 // DB konexioaren egiaztapena
 if (!$included || !isset($conn) || !$conn) {
     echo json_encode(['success' => false, 'message' => 'Errorea: ezin izan da datu basera konektatu.']);
@@ -22,16 +34,13 @@ $item_bizitza = $_POST['karta_bizitza'] ?? '';
 $item_erasoa = $_POST['karta_erasoa'] ?? '';
 $item_mota = $_POST['karta_mota'] ?? '';
 
-$
 // Sarrera-balioen normalizazioa eta egiaztapena
-// (trim eta, beharrezkoa denean, motaren egokitzapena)
 $item_izena = trim($item_izena);
 $item_kostua = trim($item_kostua);
 $item_bizitza = trim($item_bizitza);
 $item_erasoa = trim($item_erasoa);
 $item_mota = trim($item_mota);
 
-$
 // Prepared statement bat SQL injekzioak saihesteko
 $stmt = $conn->prepare("INSERT INTO Datuak (izena, kostua, bizitza, erasoa, mota) VALUES (?, ?, ?, ?, ?)");
 if ($stmt === false) {

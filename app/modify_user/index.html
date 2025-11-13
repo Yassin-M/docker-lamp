@@ -13,6 +13,7 @@
         <h2>Nire profila</h2>
         <p>Zer datu aldatu nahi duzu?</p>
         <form action="../config/modify_user.php" method="POST" id="user_modify_form">
+            <input type="hidden" name="csrf_token">
             <div class="field">
                 <div class="label">NAN-a</div>
                 <div class="value"><input class="input" type="text" id="user-id" name="nan" readonly /></div>

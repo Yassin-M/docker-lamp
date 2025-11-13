@@ -11,6 +11,7 @@
             <div class="panel Formularioa" id="form_div">
                 <form action="../config/add_item.php" name="formularioa" id="item_add_form" method="POST">
                     <h1 style="text-align: center;">KARTA GEHITU</h1>
+                    <input type="hidden" name="csrf_token">
                     <div>
                         <label for="Izena">Izena</label>
                         <input type="text" name="karta_izena" id="izena" placeholder="Sartu kartaren izena" required>

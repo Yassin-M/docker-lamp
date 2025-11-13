@@ -27,9 +27,24 @@ function validKostua(kostua) {
     return /^[1-9]$/.test(kostua);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("item_add_form");
     const mezuaDiv = document.getElementById("mezua");
+    const csrfInput = form.querySelector('input[name="csrf_token"]');
+
+    try {
+        // CSRF tokena eskuratu
+        const response = await fetch("../config/csrf.php");
+        const data = await response.json();
+
+        if (data.csrf_token) {
+            csrfInput.value = data.csrf_token; // CSRF tokena formularioan ezarri
+        } else {
+            console.error("CSRF tokena eskuratzea ezinezkoa izan da.");
+        }
+    } catch (error) {
+        console.error("Errorea CSRF tokena eskuratzean:", error);
+    }
 
     // Formularioa bidaltzean
     form.addEventListener("submit", async (e) => {
