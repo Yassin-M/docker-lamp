@@ -23,6 +23,12 @@ $data = $_POST['data'] ?? '';
 $email = $_POST['email'] ?? '';
 $pasahitza = $_POST['pasahitza'] ?? '';
 
+$data = $_POST['jaiotze_data'];
+if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $data)) {
+    echo json_encode(['success' => false, 'message' => 'Data formatu okerra']);
+    exit;
+}
+
 // Erabiltzailea edo NAN-a existitzen den egiaztatu
 $user_query = mysqli_query($conn, "SELECT * FROM Erabiltzailea WHERE email='$email' OR nan='$nan'");
 
@@ -37,8 +43,7 @@ if (mysqli_num_rows($user_query) > 0) {
 }
 
 // Erabiltzailea datu-basean sartu
-$stmt = mysqli_prepare($conn, "INSERT INTO Erabiltzailea (nan, izena, jaiotze_data, tlf, email, pasahitza) 
-                            VALUES (?, ?, ?, ?, ?, ?)");
+$stmt = mysqli_prepare($conn, "INSERT INTO Erabiltzailea (nan, izena, jaiotze_data, tlf, email, pasahitza) VALUES (?, ?, ?, ?, ?, ?)");
 mysqli_stmt_bind_param($stmt, 'ssssss', $nan, $izena, $data, $zenbaki, $email, $pasahitza);
 $user_insert = mysqli_stmt_execute($stmt);
 
