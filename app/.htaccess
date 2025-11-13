@@ -14,8 +14,4 @@ DirectoryIndex index.html index.php
 	# Minimal, compact CSP to avoid Apache header-folding issues while providing protection.
 	# Explicitly define directives that do not fall back to default-src (e.g. form-action, base-uri)
 	Header always set Content-Security-Policy "default-src 'self';script-src 'self';style-src 'self';img-src 'self' data:;frame-ancestors 'none';form-action 'self';base-uri 'self'"
-	# Hide or remove the Server header to reduce information disclosure.
-	# Requires mod_headers enabled (enabled in the Dockerfile). This will remove the Server header
-	# from responses when allowed by Apache configuration/AllowOverride.
-	Header always unset Server
 </IfModule>
