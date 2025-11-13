@@ -1,4 +1,4 @@
-FROM php:7.2.2-apache
+FROM php:7.3-apache
 
 # Install mysqli extension and enable recommended apache modules
 RUN docker-php-ext-install mysqli \

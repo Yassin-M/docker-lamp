@@ -11,8 +11,6 @@ if (function_exists('mysqli_connect')) {
 }
 ob_end_clean();
 
-session_start();
-
 // CSRF tokena egiaztatu
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!validateCsrfToken($_POST['csrf_token'] ?? '')) {

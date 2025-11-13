@@ -1,5 +1,17 @@
 <?php
-session_start();
+
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => null,
+    'secure' => false,
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 // Ensure security headers are present for direct requests to this script
 if (file_exists(__DIR__ . '/headers.php')) {
