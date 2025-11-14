@@ -13,7 +13,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-// Ensure security headers are present for direct requests to this script
 if (file_exists(__DIR__ . '/headers.php')) {
     include_once __DIR__ . '/headers.php';
 }
