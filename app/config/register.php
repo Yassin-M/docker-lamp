@@ -35,7 +35,7 @@ $data = $_POST['data'] ?? '';
 $email = $_POST['email'] ?? '';
 $pasahitza = $_POST['pasahitza'] ?? '';
 
-$data = $_POST['jaiotze_data'];
+$data = $_POST['data'];
 if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $data)) {
     echo json_encode(['success' => false, 'message' => 'Data formatu okerra']);
     exit;
